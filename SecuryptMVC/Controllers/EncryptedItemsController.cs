@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using SecuryptMVC.DAL;
 using SecuryptMVC.Models;
 
+//https://support.microsoft.com/en-us/help/323246/how-to-upload-a-file-to-a-web-server-in-asp-net-by-using-visual-c--net
 namespace SecuryptMVC.Controllers
 {
     public class EncryptedItemsController : Controller

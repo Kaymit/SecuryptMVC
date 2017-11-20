@@ -58,93 +58,6 @@ namespace SecuryptMVC.Utility
             }
         }
 
-        //https://docs.microsoft.com/en-us/dotnet/standard/security/how-to-store-asymmetric-keys-in-a-key-container
-        internal static void DeleteKeyFromContainer(string ContainerName)
-        {
-            CspParameters cp = new CspParameters();
-            cp.KeyContainerName = ContainerName;
-            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(cp);
-
-            rsa.PersistKeyInCsp = false; //doesn't save 
-
-            rsa.Clear();
-
-            Console.WriteLine("Key deleted.");
-        }
-
-        //https://stackoverflow.com/questions/17640055/c-sharp-rsacryptoserviceprovider-how-to-check-if-a-key-already-exists-in-contai
-        internal static bool doesKeyExist(string containerName)
-        {
-            var cspParams = new CspParameters
-            {
-                Flags = CspProviderFlags.UseExistingKey,
-                KeyContainerName = containerName
-            };
-
-            try
-            {
-                var provider = new RSACryptoServiceProvider(cspParams);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-                return false;
-            }
-            return true;
-        }
-
-        internal void testRSAEncrypt(string stringToEncrypt)
-        {
-            try
-            {
-                UnicodeEncoding ByteConverter = new UnicodeEncoding();
-
-                Console.WriteLine("String to encrypt: " + stringToEncrypt);
-
-                byte[] bytesToEncrypt = ByteConverter.GetBytes(stringToEncrypt);    //gets bytes from string
-                byte[] encryptedBytes = rsa.Encrypt(bytesToEncrypt, false);         //encrypts bytes with RSA
-                Console.WriteLine("Encrypted Bytes: " + Convert.ToBase64String(encryptedBytes));
-
-                byte[] decryptedBytes = rsa.Decrypt(encryptedBytes, false);         //decrypts bytes with RSA 
-                Console.WriteLine("Decrypted Bytes: " + Convert.ToBase64String(decryptedBytes));
-
-                String decryptedText = ByteConverter.GetString(decryptedBytes);     //decodes bytes in Unicode
-                Console.WriteLine("Decrypted text: " + decryptedText);              //prints resulting text
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-        }
-
-        //opens file for EncryptFile(string inFile)
-        internal void EncryptFileDialog()
-        {
-            if (rsa == null) ;
-            //MessageBox.Show("Key not set.");
-            else
-            {
-                // Display a dialog box to select a file to encrypt.
-                /*OpenFileDialog dlg = new OpenFileDialog();
-                //dlg.InitialDirectory = SrcFolder;
-
-                Nullable<bool> result = dlg.ShowDialog();
-
-                if (result == true)
-                {
-                    string fName = dlg.FileName;
-                    if (fName != null)
-                    {
-                        FileInfo fInfo = new FileInfo(fName);
-                        // Pass the file name without the path.
-                        string name = fInfo.FullName;
-                        EncryptFile(name);
-                    }
-                }
-                else return; //file not selected, so return to page
-                */
-            }
-        }
 
         //example from https://docs.microsoft.com/en-us/dotnet/standard/security/walkthrough-creating-a-cryptographic-application
         internal void EncryptFile(string inFile)
@@ -181,8 +94,9 @@ namespace SecuryptMVC.Utility
             int startFileName = inFile.LastIndexOf("\\") + 1;
 
             // Change the file's extension to ".enc"
-            string outFile = inFile.Substring(startFileName, inFile.LastIndexOf(".") - startFileName) + ".enc";
-
+            //string outFile = inFile.Substring(startFileName, inFile.LastIndexOf(".") - startFileName) + ".enc";
+            string outFile = inFile.Substring(0, inFile.LastIndexOf(".")) + ".enc";
+            
             using (FileStream outFs = new FileStream(outFile, FileMode.Create))
             {
                 //write header for encrypted file
@@ -226,33 +140,33 @@ namespace SecuryptMVC.Utility
             }
         }
 
-
-        //helper for DecryptFile(string inFile)
-        internal void DecryptFileDialog()
+        //https://stackoverflow.com/questions/9995839/how-to-make-random-string-of-numbers-and-letters-with-a-length-of-5
+        public string RandomString(int length)
         {
-            /*
-            if (rsa == null)
-                MessageBox.Show("Key not set.");
-            else
+            const string pool = "abcdefghijklmnopqrstuvwxyz0123456789";
+            var builder = new StringBuilder();
+
+            for (var i = 0; i < length; i++)
             {
-                // Display a dialog box to select the encrypted file.
-                OpenFileDialog dlg = new OpenFileDialog();
-                //dlg.InitialDirectory = EncrFolder;
-
-                Nullable<bool> result = dlg.ShowDialog();
-
-                if (result == true)
-                {
-                    string fName = dlg.FileName;
-                    if (fName != null)
-                    {
-                        FileInfo fi = new FileInfo(fName);
-                        string name = fi.Name;
-                        DecryptFile(name);
-                    }
-                }
+                Random r = new Random();
+                var c = pool[r.Next(0, pool.Length)];
+                builder.Append(c);
             }
-            */
+
+            return builder.ToString();
+        }
+
+        internal void archiveFiles()
+        {
+            //check if file is already archived
+            //if not, open archive file
+            //add files to archive and close file
+        }
+
+        //simple function to return Public Key XML string
+        public string PublicKeyToString()
+        {
+            return rsa.ToXmlString(false); //false returns only Public Key
         }
 
         //example from https://docs.microsoft.com/en-us/dotnet/standard/security/walkthrough-creating-a-cryptographic-application
@@ -361,11 +275,123 @@ namespace SecuryptMVC.Utility
 
         }
 
-        internal void archiveFiles()
+        //https://docs.microsoft.com/en-us/dotnet/standard/security/how-to-store-asymmetric-keys-in-a-key-container
+        internal static void DeleteKeyFromContainer(string ContainerName)
         {
-            //check if file is already archived
-            //if not, open archive file
-            //add files to archive and close file
+            CspParameters cp = new CspParameters();
+            cp.KeyContainerName = ContainerName;
+            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(cp);
+
+            rsa.PersistKeyInCsp = false; //doesn't save 
+
+            rsa.Clear();
+
+            Console.WriteLine("Key deleted.");
         }
+
+        //https://stackoverflow.com/questions/17640055/c-sharp-rsacryptoserviceprovider-how-to-check-if-a-key-already-exists-in-contai
+        internal static bool doesKeyExist(string containerName)
+        {
+            var cspParams = new CspParameters
+            {
+                Flags = CspProviderFlags.UseExistingKey,
+                KeyContainerName = containerName
+            };
+
+            try
+            {
+                var provider = new RSACryptoServiceProvider(cspParams);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
+            return true;
+        }
+
+        internal void testRSAEncrypt(string stringToEncrypt)
+        {
+            try
+            {
+                UnicodeEncoding ByteConverter = new UnicodeEncoding();
+
+                Console.WriteLine("String to encrypt: " + stringToEncrypt);
+
+                byte[] bytesToEncrypt = ByteConverter.GetBytes(stringToEncrypt);    //gets bytes from string
+                byte[] encryptedBytes = rsa.Encrypt(bytesToEncrypt, false);         //encrypts bytes with RSA
+                Console.WriteLine("Encrypted Bytes: " + Convert.ToBase64String(encryptedBytes));
+
+                byte[] decryptedBytes = rsa.Decrypt(encryptedBytes, false);         //decrypts bytes with RSA 
+                Console.WriteLine("Decrypted Bytes: " + Convert.ToBase64String(decryptedBytes));
+
+                String decryptedText = ByteConverter.GetString(decryptedBytes);     //decodes bytes in Unicode
+                Console.WriteLine("Decrypted text: " + decryptedText);              //prints resulting text
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        /*
+        //opens file for EncryptFile(string inFile)
+        internal void EncryptFileDialog()
+        {
+            if (rsa == null) ;
+            //MessageBox.Show("Key not set.");
+            else
+            {
+                // Display a dialog box to select a file to encrypt.
+                OpenFileDialog dlg = new OpenFileDialog();
+                //dlg.InitialDirectory = SrcFolder;
+
+                Nullable<bool> result = dlg.ShowDialog();
+
+                if (result == true)
+                {
+                    string fName = dlg.FileName;
+                    if (fName != null)
+                    {
+                        FileInfo fInfo = new FileInfo(fName);
+                        // Pass the file name without the path.
+                        string name = fInfo.FullName;
+                        EncryptFile(name);
+                    }
+                }
+                else return; //file not selected, so return to page
+                
+            }
+        }
+        */
+
+        /*
+        //helper for DecryptFile(string inFile)
+        internal void DecryptFileDialog()
+        {
+            
+            if (rsa == null)
+                MessageBox.Show("Key not set.");
+            else
+            {
+                // Display a dialog box to select the encrypted file.
+                OpenFileDialog dlg = new OpenFileDialog();
+                //dlg.InitialDirectory = EncrFolder;
+
+                Nullable<bool> result = dlg.ShowDialog();
+
+                if (result == true)
+                {
+                    string fName = dlg.FileName;
+                    if (fName != null)
+                    {
+                        FileInfo fi = new FileInfo(fName);
+                        string name = fi.Name;
+                        DecryptFile(name);
+                    }
+                }
+            }
+        }
+        */
     }
 }

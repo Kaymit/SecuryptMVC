@@ -10,6 +10,8 @@ namespace SecuryptMVC.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Message = Server.MapPath("~");
+
             return View();
         }
 

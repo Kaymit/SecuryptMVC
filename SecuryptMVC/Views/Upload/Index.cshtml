@@ -1,0 +1,142 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = "Index";
+}
+<body>
+    <h2>Drag & Drop file upload </h2>
+    <div id="dropArea">
+        Drag and drop your files here
+    </div>
+    <h2>UploadFile</h2>
+    <ul class="list-group" id="uploadList"></ul>
+    <br>
+    <p>Or upload your files here</p>
+
+    <form id="myForm" method="post" enctype="multipart/form-data">
+
+        Files: <input type="file" id="files" name="files" multiple accept="image/*"><br />
+
+        <div id="selectedFiles"></div>
+
+        <input type="submit" value="Encrypt" />
+    </form>
+
+    <script>
+
+            /// Author: Michael
+            /// Date: 2017-11-17
+            /// Based on: https://www.raymondcamden.com/2013/09/10/Adding-a-file-display-list-to-a-multifile-upload-HTML-control/
+            /// Updated: 2017-11-19 - Michael
+            /// Added a remove button
+            var selDiv = "";
+
+            document.addEventListener("DOMContentLoaded", init, false);
+
+            function init() {
+                document.querySelector('#files').addEventListener('change', handleFileSelect, false);
+                selDiv = document.querySelector("#selectedFiles");
+            }
+
+            function handleFileSelect(e) {
+
+                if (!e.target.files) return;
+
+                selDiv.innerHTML = "";
+
+                var files = e.target.files;
+                for (var i = 0; i < files.length; i++) {
+                    var f = files[i];
+
+
+                    $('#uploadList').append('<li class="list-group-item">' + f.name + '<button>Remove</button></li>');
+
+                }
+
+            }
+            $("#uploadList").on("click", "button", function () {
+                $(this).closest("ul").remove();
+            });
+    </script>
+
+</body>
+
+<style>
+    input[type='file'] {
+        color: transparent;
+    }
+
+    #dropArea {
+        background: #b5b5b5;
+        border: black dashed 1px;
+        width: 300px;
+        height: 300px;
+        text-align: center;
+        color: #fff;
+        padding-top: 12px;
+        line-height: 300px;
+    }
+
+    .active-drop {
+        background: #77bafa !important;
+        border: solid 2px blue !important;
+        opacity: .5;
+        color: black !important;
+    }
+</style>
+@section Scripts{
+    <script src="~/Scripts/jquery.filedrop.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#dropArea').filedrop({
+                url: '@Url.Action("UploadFiles")',
+                allowedfiletypes: [],
+                allowedfileextensions: [],
+                paramname: 'files',
+                maxfiles: 5,
+                maxfilesize: 5, // in MB
+                dragOver: function () {
+                    $('#dropArea').addClass('active-drop');
+                },
+                dragLeave: function () {
+                    $('#dropArea').removeClass('active-drop');
+                },
+                afterAll: function (e) {
+                    $('#dropArea').html('file(s) uploaded successfully');
+                },
+                uploadFinished: function (i, file, response, time) {
+                    $('#uploadList').append('<li class="list-group-item">' + file.name + '<button>Remove</button></li>')
+                }
+            })
+        });
+    </script>
+    <!-- https://www.youtube.com/watch?v=hqSlVvKvvjQ
+        Author: Michael
+        Date: 2017-11-16-->
+    <script>
+        (function () {
+            var upload = function (files) {
+                var formData = new FormData(),
+                    xhr = new XMLHttpRequest(),
+                    x;
+
+                for (x = 0; x < files.length; x++) {
+                    formData.append('file[]', filex[x]);
+                }
+
+                xhr.onload = function () {
+                    var data = this.response;
+                }
+
+                xhr.open('post', 'UploadController.cs');
+                xhr.send(formData);
+            };
+
+            dropArea.onDrop = function (e) {
+                e.defaultPrevented;
+                upload(e.datTransfer.files);
+            };
+        }());
+    </script>
+}

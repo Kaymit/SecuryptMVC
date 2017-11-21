@@ -7,13 +7,18 @@ using SecuryptMVC.Models;
 
 namespace SecuryptMVC.DAL
 {
-    public class FileContext : DbContext
-    {
-        public FileContext() : base("FileContext")
-        {
+	public class FileContext : DbContext
+	{
+		public FileContext() : base("FileContext")
+		{
 
-        }
+		}
 
-        public DbSet<EncryptedItem> EncryptedItems { get; set; }
-    }
+		public DbSet<EncryptedItem> EncryptedItems { get; set; }
+
+		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+		{
+			base.OnModelCreating(modelBuilder);
+		}
+	}
 }

@@ -4,39 +4,50 @@
 
 <div class="jumbotron">
     <h1>Securypt</h1>
-    <p class="lead">Securypt allows you to encrypt and decrypt your files. Files may be saved locally or stored on a server</p>
+    <p class="lead">@Securypt.Resources.MyStrings_en.Jumbotron</p>
 
     <div class="map-path">@ViewBag.Message</div>
 
-    <p><a href="~/Upload" class="btn btn-primary btn-lg">Get started &raquo;</a></p>
+    <p><a href="~/Account/Register" class="btn btn-primary btn-lg">Get started &raquo;</a></p>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>How it works</h2>
+        <h2>How to start</h2>
 
         <!--Need to remove images from gitignore or add new images-->
         <img src="~/Content/Images/cqraf6gz.bmp" alt="drag and drop" width="300" />
         <p>
-            To get started, drag and drop or upload files from your computer onto the upload area. Once all your files
+            To get started, register for an account to generate your public key. Keep this saved somewhere where you won't lose it. 
+        <p>
+            Click on the 'Upload' tab to start. Drag and drop or upload files from your computer onto the upload area. Once all your files
             have been selected, click "Encrypt" to encrypt your files. After, your encrypted files will be stored locally
             on your computer or you can choose to store them on a server.
         </p>
         <p>
             Decrypting your files is just as easy. Drag and drop or upload your encrypted files for decrytion.
         </p>
-        <p><a class="btn btn-default" href="~/Upload">Tutorial? &raquo;</a></p>
     </div>
     <div class="col-md-4">
         <h2>Encrypt</h2>
         <img src="~/Content/Images/encryption.jpg" alt="Encryption" width="350" />
-        <p>[Generic text to describe encryption.]</p>
+        <p>
+           In cryptography, encryption is the process of encoding a message or information in such a way that only authorized 
+           parties can access it. Encryption does not itself prevent interference, but denies the intelligible content to a would-be interceptor. 
+           In an encryption scheme, the intended information or message, referred to as plaintext, is encrypted using an encryption 
+           algorithm – a cipher – generating ciphertext that can only be read if decrypted.
+        </p>
+        <p><a link ="https://en.wikipedia.org/wiki/Encryption"/>From Wikipedia, the free encyclopedia</a></p>
         <p><a class="btn btn-default" href="~/Upload">Start Encrypting! &raquo;</a></p>
     </div>
     <div class="col-md-4">
         <h2>Decrypt</h2>
         <img src="~/Content/Images/decryption.jpg" alt="Decryption" width="350" />
-        <p>[Generic text to describe decryption.]</p>
+        <p>
+            An authorized party, however, is able to decode the ciphertext using a decryption algorithm, that usually requires a secret decryption key, 
+            that adversaries do not have access to. For technical reasons, an encryption scheme usually needs a key-generation algorithm, to randomly produce keys.
+        </p>
+        <p><a link="https://en.wikipedia.org/wiki/Encryption" />From Wikipedia, the free encyclopedia</a></p>
         <p><a class="btn btn-default" href="~/Views/EncryptedItems/Index.cshtml">Start Decrypting! &raquo;</a></p>
     </div>
 </div>

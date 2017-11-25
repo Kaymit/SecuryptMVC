@@ -6,10 +6,12 @@
 }
 <body>
     <h2>Drag & Drop file upload </h2>
-    <div id="dropArea">
-        Drag and drop your files here
+    <div class="row">
+        <div class="col-sm-2" id="dropArea">
+            Drag and drop your files here
+        </div>
     </div>
-    <h2>UploadFile</h2>
+    <h2>Uploaded Files</h2>
     <ul class="list-group" id="uploadList"></ul>
     <br>
     <p>Or upload your files here</p>
@@ -24,7 +26,6 @@
     </form>
 
     <script>
-
             /// Author: Michael
             /// Date: 2017-11-17
             /// Based on: https://www.raymondcamden.com/2013/09/10/Adding-a-file-display-list-to-a-multifile-upload-HTML-control/
@@ -49,14 +50,12 @@
                 for (var i = 0; i < files.length; i++) {
                     var f = files[i];
 
-
+                    // Adds a list group for each item uploaded and a remove button
                     $('#uploadList').append('<li class="list-group-item">' + f.name + '<button>Remove</button></li>');
-
                 }
-
             }
             $("#uploadList").on("click", "button", function () {
-                $(this).closest("ul").remove();
+                $(this).closest("li").remove();
             });
     </script>
 
@@ -111,6 +110,7 @@
             })
         });
     </script>
+
     <!-- https://www.youtube.com/watch?v=hqSlVvKvvjQ
         Author: Michael
         Date: 2017-11-16-->
@@ -129,6 +129,7 @@
                     var data = this.response;
                 }
 
+                // Sends a POST request to the Upload controller
                 xhr.open('post', 'UploadController.cs');
                 xhr.send(formData);
             };
@@ -136,6 +137,7 @@
             dropArea.onDrop = function (e) {
                 e.defaultPrevented;
                 upload(e.datTransfer.files);
+                return false;
             };
         }());
     </script>

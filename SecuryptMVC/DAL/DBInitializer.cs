@@ -7,7 +7,7 @@ using SecuryptMVC.Models;
 namespace SecuryptMVC.DAL
 {
     //MVC EF framework class: if model changes, DB is dropped and recreated with test/dev data
-    public class DBInitializer : System.Data.Entity.DropCreateDatabaseAlways<FileContext>
+    public class DBInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<FileContext>
     {
         protected override void Seed(FileContext context)
         {
@@ -19,7 +19,7 @@ namespace SecuryptMVC.DAL
                 new EncryptedItem { Name = "File4", PublicKey = "o(K*UYI*&hu75RGY^4eHFGTYHGJYUKGIKfjytfgjnhtfnghm", StorageLocation = "Storage4"},
                 new EncryptedItem { Name = "File4", PublicKey = "uyjthU&^%Rt78hrj*&67thgu7^RTGU7hytgh&U^TYU&^rt65yR&", StorageLocation = "Storage5"},
             };
-
+            
             files.ForEach(f => context.EncryptedItems.Add(f));
             context.SaveChanges();
         }

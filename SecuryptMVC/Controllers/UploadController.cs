@@ -21,6 +21,7 @@ namespace SecuryptMVC.Controllers
     public class UploadController : Controller
     {
         FileContext db = new FileContext();
+
         // GET: Upload
         public ActionResult Index()
         {

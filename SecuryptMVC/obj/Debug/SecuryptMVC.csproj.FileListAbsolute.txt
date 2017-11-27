@@ -359,3 +359,7 @@ C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\o
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.csproj.GenerateResource.Cache
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.dll
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.pdb
+C:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\bin\Resources.dll
+C:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\bin\Resources.pdb
+C:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\bin\de\Resources.resources.dll
+C:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.csproj.CoreCompileInputs.cache

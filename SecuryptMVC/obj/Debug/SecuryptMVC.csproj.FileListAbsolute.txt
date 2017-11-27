@@ -356,3 +356,6 @@ C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\o
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.Views.Shared.MyStrings-en.resources
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.csproj.GenerateResource.Cache
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.Views.Shared.MyStrings-de.resources
+D:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.Views.Shared.MyStrings-de.resources
+D:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.Views.Shared.MyStrings-en.resources
+D:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.csproj.GenerateResource.Cache

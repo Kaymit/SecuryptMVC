@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SecuryptMVC.Models;
+using SecuryptMVC.Utility;
 
 
 /// https://docs.microsoft.com/en-us/aspnet/mvc/overview/security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset
@@ -118,9 +119,6 @@ namespace SecuryptMVC.Controllers
                 return View(model);
             }
 
-            // The following code protects for brute force attacks against the two factor codes. 
-            // If a user enters incorrect codes for a specified amount of time then the user account 
-            // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
             var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
@@ -153,7 +151,12 @@ namespace SecuryptMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                //CryptoHandler creates keypair for user and adds Public Key to User
+                CryptoHandler ch = new CryptoHandler();
+                ch.initProgram();
+                string publicKey = ch.PublicKeyToString();
+
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PublicKey = publicKey };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

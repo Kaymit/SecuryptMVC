@@ -5,8 +5,12 @@ using Microsoft.Owin.Security;
 
 namespace SecuryptMVC.Models
 {
+    /// <summary>
+    /// Added PublicKey to default ViewModel to display User's public key on profile management
+    /// </summary>
     public class IndexViewModel
     {
+        public string PublicKey { get; set; }
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
         public string PhoneNumber { get; set; }

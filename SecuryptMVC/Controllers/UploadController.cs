@@ -31,10 +31,11 @@ namespace SecuryptMVC.Controllers
         [HttpPost]
         public ActionResult UploadFiles(IEnumerable<HttpPostedFileBase> files)
         {
+            //Register CryptoHandler and ensure keys are current
             CryptoHandler ch = new CryptoHandler();
             ch.initProgram();
+
             string publicKey = ch.PublicKeyToString();
-            //string publicKey = ch.RandomString(24); //fake database id string: will change to either
 
             var f = Request.Files[0];
             if (f == null)
@@ -60,7 +61,8 @@ namespace SecuryptMVC.Controllers
                 }
 
                 db.EncryptedItems.Add(new EncryptedItem { Name = fileName, PublicKey = publicKey, StorageLocation = storagePath });
-                db.SaveChangesAsync(); //add new EncryptedItem to database (HACKY)
+                db.SaveChangesAsync(); //add new EncryptedItem to database
+                                       //TODO move to helper class?
 
                 /*
                 return RedirectToAction("Create", "EncryptedItemController", new {

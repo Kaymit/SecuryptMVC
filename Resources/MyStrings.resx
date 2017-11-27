@@ -118,63 +118,72 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BrowseFiles" xml:space="preserve">
-    <value>Dateien</value>
+    <value>Files</value>
   </data>
   <data name="DecryptH2" xml:space="preserve">
-    <value>Entschlüsseln</value>
+    <value>Decrypt</value>
   </data>
   <data name="DecryptHome_btn" xml:space="preserve">
-    <value>Entschlüsselung starten</value>
+    <value>Start Decrypting!</value>
   </data>
   <data name="Decrypt_desc" xml:space="preserve">
-    <value>Eine autorisierte Partei ist jedoch in der Lage, den Chiffretext unter Verwendung eines Entschlüsselungsalgorithmus zu decodieren, der normalerweise einen geheimen Entschlüsselungsschlüssel erfordert.
-             auf die Gegner keinen Zugriff haben. Aus technischen Gründen benötigt ein Verschlüsselungsschema normalerweise einen Schlüsselerzeugungsalgorithmus, um Schlüssel zufällig zu erzeugen.</value>
+    <value>An authorized party, however, is able to decode the ciphertext using a decryption algorithm, that usually requires a secret decryption key, 
+            that adversaries do not have access to. For technical reasons, an encryption scheme usually needs a key-generation algorithm, to randomly produce keys.</value>
   </data>
   <data name="DragArea" xml:space="preserve">
-    <value>Ziehe deine Dateien per Drag &amp; Drop hier</value>
+    <value>Drag and drop your files here</value>
   </data>
   <data name="DragDropH2" xml:space="preserve">
-    <value>Drag &amp; Drop Datei-Upload</value>
+    <value>Drag &amp; Drop file upload</value>
   </data>
   <data name="EncryptH2" xml:space="preserve">
-    <value>Verschlüsseln</value>
+    <value>Encrypt</value>
   </data>
   <data name="EncryptHome_btn" xml:space="preserve">
-    <value>Verschlüsseln starten</value>
+    <value>Start Encrypting!</value>
   </data>
   <data name="EncryptUpload_btn" xml:space="preserve">
-    <value>Verschlüsseln</value>
+    <value>Encrypt</value>
   </data>
   <data name="Encrypt_desc" xml:space="preserve">
-    <value>Verschlüsselung ist in der Kryptographie der Prozess der Verschlüsselung einer Nachricht oder Information so, dass nur autorisierte
-            Parteien können darauf zugreifen. Die Verschlüsselung verhindert selbst keine Interferenz, verweigert jedoch den verständlichen Inhalt einem möglichen Abfangjäger.
-            In einem Verschlüsselungsschema wird die beabsichtigte Information oder Nachricht, die als Klartext bezeichnet wird, unter Verwendung einer Verschlüsselung verschlüsselt.
-            Algorithmus - ein verschlüsselter Chiffretext, der nur gelesen werden kann, wenn er entschlüsselt wird.</value>
+    <value>In cryptography, encryption is the process of encoding a message or information in such a way that only authorized 
+           parties can access it. Encryption does not itself prevent interference, but denies the intelligible content to a would-be interceptor. 
+           In an encryption scheme, the intended information or message, referred to as plaintext, is encrypted using an encryption 
+           algorithm – a cipher – generating ciphertext that can only be read if decrypted.</value>
+  </data>
+  <data name="ForgotViewModel_displayEmail" xml:space="preserve">
+    <value>Email</value>
   </data>
   <data name="HowStartH2" xml:space="preserve">
-    <value>Wie man anfängt</value>
+    <value>How to start</value>
   </data>
   <data name="Jumbotron" xml:space="preserve">
-    <value>Mit Securypt können Sie Ihre Dateien verschlüsseln und entschlüsseln. Dateien können lokal gespeichert oder auf einem Server gespeichert werden. Erstellen Sie ein Konto für einen öffentlichen Schlüssel</value>
+    <value>Securypt allows you to encrypt and decrypt your files. Files may be saved locally or stored on a server. Create an account for a public key</value>
   </data>
   <data name="Jumbo_btn" xml:space="preserve">
-    <value>Loslegen</value>
+    <value>Get started</value>
   </data>
   <data name="Tutorial_pt1" xml:space="preserve">
-    <value>Registrieren Sie sich zunächst für ein Konto, um Ihren öffentlichen Schlüssel zu generieren. Bewahren Sie dieses irgendwo auf, wo Sie es nicht verlieren werden.</value>
+    <value>To get started, register for an account to generate your public key. Keep this saved somewhere where you won't lose it.</value>
   </data>
   <data name="Tutorial_pt2" xml:space="preserve">
-    <value>Klicken Sie zum Starten auf die Registerkarte "Hochladen". Ziehen Sie Dateien von Ihrem Computer in den Upload-Bereich und legen Sie sie dort ab. Sobald alle Ihre Dateien
-             Klicken Sie auf "Verschlüsseln", um Ihre Dateien zu verschlüsseln. Danach werden Ihre verschlüsselten Dateien lokal gespeichert
-             auf Ihrem Computer oder Sie können wählen, sie auf einem Server zu speichern.</value>
+    <value>Click on the 'Upload' tab to start. Drag and drop or upload files from your computer onto the upload area. Once all your files
+            have been selected, click "Encrypt" to encrypt your files. After, your encrypted files will be stored locally
+            on your computer or you can choose to store them on a server.</value>
   </data>
   <data name="Tutorial_pt3" xml:space="preserve">
-    <value>Die Entschlüsselung Ihrer Dateien ist genauso einfach. Ziehen Sie Ihre verschlüsselten Dateien per Drag &amp; Drop oder laden Sie sie hoch, um sie zu entschlüsseln.</value>
+    <value>Decrypting your files is just as easy. Drag and drop or upload your encrypted files for decrytion.</value>
   </data>
   <data name="UploadedFilesH2" xml:space="preserve">
-    <value>Hochgeladene Dateien</value>
+    <value>Uploaded Files</value>
   </data>
   <data name="Upload_alt" xml:space="preserve">
-    <value>Oder laden Sie Ihre Dateien hier hoch</value>
+    <value>Or upload your files here</value>
+  </data>
+  <data name="Wikipedia" xml:space="preserve">
+    <value>From Wikipedia, the free encyclopedia</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Why would you want to contact us?</value>
   </data>
 </root>

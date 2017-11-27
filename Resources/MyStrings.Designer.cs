@@ -22,14 +22,14 @@ namespace Securypt.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MyStrings_en {
+    public class MyStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MyStrings_en() {
+        internal MyStrings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Securypt.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SecuryptMVC.Views.Shared.MyStrings-en", typeof(MyStrings_en).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.MyStrings", typeof(MyStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -66,6 +66,15 @@ namespace Securypt.Resources {
         public static string BrowseFiles {
             get {
                 return ResourceManager.GetString("BrowseFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why would you want to contact us?.
+        /// </summary>
+        public static string Contact {
+            get {
+                return ResourceManager.GetString("Contact", resourceCulture);
             }
         }
         
@@ -155,6 +164,15 @@ namespace Securypt.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string ForgotViewModel_displayEmail {
+            get {
+                return ResourceManager.GetString("ForgotViewModel_displayEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to How to start.
         /// </summary>
         public static string HowStartH2 {
@@ -225,6 +243,15 @@ namespace Securypt.Resources {
         public static string UploadedFilesH2 {
             get {
                 return ResourceManager.GetString("UploadedFilesH2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Wikipedia, the free encyclopedia.
+        /// </summary>
+        public static string Wikipedia {
+            get {
+                return ResourceManager.GetString("Wikipedia", resourceCulture);
             }
         }
     }

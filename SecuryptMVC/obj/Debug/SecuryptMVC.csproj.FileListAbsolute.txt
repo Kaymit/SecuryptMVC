@@ -235,6 +235,9 @@ C:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\bin\Microsoft.AI.Web.xml
 C:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.csprojResolveAssemblyReference.cache
 C:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.dll
 C:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.pdb
+D:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.Views.Shared.MyStrings-de.resources
+D:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.Views.Shared.MyStrings-en.resources
+D:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.csproj.GenerateResource.Cache
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\bin\ApplicationInsights.config
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\bin\roslyn\csc.exe
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\bin\roslyn\csc.exe.config
@@ -351,11 +354,8 @@ C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\b
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\bin\Microsoft.AI.Web.xml
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.csprojResolveAssemblyReference.cache
-C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.dll
-C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.pdb
+C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.Views.Shared.MyStrings-de.resources
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.Views.Shared.MyStrings-en.resources
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.csproj.GenerateResource.Cache
-C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.Views.Shared.MyStrings-de.resources
-D:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.Views.Shared.MyStrings-de.resources
-D:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.Views.Shared.MyStrings-en.resources
-D:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.csproj.GenerateResource.Cache
+C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.dll
+C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.pdb

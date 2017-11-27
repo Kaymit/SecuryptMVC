@@ -1,53 +1,48 @@
-﻿@{
+﻿@using Securypt.Resources;
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
     <h1>Securypt</h1>
-    <p class="lead">@Securypt.Resources.MyStrings_en.Jumbotron</p>
+    <p class="lead">@MyStrings.Jumbotron</p>
 
     <div class="map-path">@ViewBag.Message</div>
 
-    <p><a href="~/Account/Register" class="btn btn-primary btn-lg">Get started &raquo;</a></p>
+    <p><a href="~/Account/Register" class="btn btn-primary btn-lg">@MyStrings.Jumbo_btn &raquo;</a></p>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>How to start</h2>
+        <h2>@MyStrings.HowStartH2</h2>
 
         <!--Need to remove images from gitignore or add new images-->
         <img src="~/Content/Images/cqraf6gz.bmp" alt="drag and drop" width="300" />
         <p>
-            To get started, register for an account to generate your public key. Keep this saved somewhere where you won't lose it. 
+            @MyStrings.Tutorial_pt1 
         <p>
-            Click on the 'Upload' tab to start. Drag and drop or upload files from your computer onto the upload area. Once all your files
-            have been selected, click "Encrypt" to encrypt your files. After, your encrypted files will be stored locally
-            on your computer or you can choose to store them on a server.
+           @MyStrings.Tutorial_pt2
         </p>
         <p>
-            Decrypting your files is just as easy. Drag and drop or upload your encrypted files for decrytion.
+            @MyStrings.Tutorial_pt3
         </p>
     </div>
     <div class="col-md-4">
-        <h2>Encrypt</h2>
+        <h2>@MyStrings.EncryptH2</h2>
         <img src="~/Content/Images/encryption.jpg" alt="Encryption" width="350" />
         <p>
-           In cryptography, encryption is the process of encoding a message or information in such a way that only authorized 
-           parties can access it. Encryption does not itself prevent interference, but denies the intelligible content to a would-be interceptor. 
-           In an encryption scheme, the intended information or message, referred to as plaintext, is encrypted using an encryption 
-           algorithm – a cipher – generating ciphertext that can only be read if decrypted.
+           @MyStrings.Encrypt_desc
         </p>
-        <p><a link ="https://en.wikipedia.org/wiki/Encryption"/>From Wikipedia, the free encyclopedia</a></p>
-        <p><a class="btn btn-default" href="~/Upload">Start Encrypting! &raquo;</a></p>
+        <p><a link ="https://en.wikipedia.org/wiki/Encryption"/>@MyStrings.Wikipedia</p>
+        <p><a class="btn btn-default" href="~/Upload">@MyStrings.EncryptHome_btn &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Decrypt</h2>
+        <h2>@MyStrings.DecryptH2</h2>
         <img src="~/Content/Images/decryption.jpg" alt="Decryption" width="350" />
         <p>
-            An authorized party, however, is able to decode the ciphertext using a decryption algorithm, that usually requires a secret decryption key, 
-            that adversaries do not have access to. For technical reasons, an encryption scheme usually needs a key-generation algorithm, to randomly produce keys.
+            @MyStrings.Decrypt_desc
         </p>
-        <p><a link="https://en.wikipedia.org/wiki/Encryption" />From Wikipedia, the free encyclopedia</a></p>
-        <p><a class="btn btn-default" href="~/Views/EncryptedItems/Index.cshtml">Start Decrypting! &raquo;</a></p>
+        <p><a link="https://en.wikipedia.org/wiki/Encryption" />@MyStrings.Wikipedia</p>
+        <p><a class="btn btn-default" href="~/Views/EncryptedItems/Index.cshtml">@MyStrings.DecryptHome_btn &raquo;</a></p>
     </div>
 </div>

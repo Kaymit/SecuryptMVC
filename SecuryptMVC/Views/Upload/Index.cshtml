@@ -1,35 +1,30 @@
-﻿@{
+﻿@using Securypt.Resources;
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 @{
     ViewBag.Title = "Index";
 }
 <body>
-    <h2>Drag & Drop file upload </h2>
+    <h2>@MyStrings.DragDropH2</h2>
     <div class="row">
         <div class="col-sm-2" id="dropArea">
-            Drag and drop your files here
+            @MyStrings.DragArea
         </div>
     </div>
-    <h2>Uploaded Files</h2>
+    <h2>@MyStrings.UploadedFilesH2</h2>
     <ul class="list-group" id="uploadList"></ul>
     <br>
-    <p>Or upload your files here</p>
+    <p>@MyStrings.Upload_alt</p>
 
     <form id="myForm" method="post" enctype="multipart/form-data">
 
-        Files: <input type="file" id="files" name="files" multiple accept="image/*"><br />
+        @MyStrings.BrowseFiles: <input type="file" id="files" name="files" multiple accept="image/*"><br />
 
         <div id="selectedFiles"></div>
 
-        <!--Check if file is to be private or publicly visible-->
-        <div class="form-check">
-            <label class="form-check-label">
-                <input type="checkbox" id="privateCheck" class="form-check-input">
-                Private File
-            </label>
-        </div>
-        <input type="submit" value="Encrypt" />
+        <input type="submit" value=@MyStrings.EncryptUpload_btn />
     </form>
 
     <script>

@@ -61,7 +61,8 @@ namespace SecuryptMVC.Controllers
                     ViewBag.deleteSuccess = "true";
                 }
 
-                db.EncryptedItems.Add(new EncryptedItem { Name = fileName, PublicKey = publicKey, StorageLocation = storagePath });
+                //files private by default
+                db.EncryptedItems.Add(new EncryptedItem { Name = fileName, PublicKey = publicKey, StorageLocation = storagePath, IsPrivate = true });
                 db.SaveChangesAsync(); //add new EncryptedItem to database
                                        //TODO move to helper class?
 

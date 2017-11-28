@@ -44,23 +44,6 @@ namespace SecuryptMVC.Controllers
             return View();
         }
 
-        // POST: EncryptedItems/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Name,PublicKey,StorageLocation")] EncryptedItem encryptedItem)
-        {
-            if (ModelState.IsValid)
-            {
-                db.EncryptedItems.Add(encryptedItem);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-
-            return View(encryptedItem);
-        }
-
         // GET: EncryptedItems/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {

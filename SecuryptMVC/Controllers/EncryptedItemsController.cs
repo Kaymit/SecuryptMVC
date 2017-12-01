@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using SecuryptMVC.DAL;
 using SecuryptMVC.Models;
+using Microsoft.AspNet.Identity;
 
 //https://support.microsoft.com/en-us/help/323246/how-to-upload-a-file-to-a-web-server-in-asp-net-by-using-visual-c--net
 namespace SecuryptMVC.Controllers
@@ -20,7 +21,17 @@ namespace SecuryptMVC.Controllers
         // GET: EncryptedItems
         public async Task<ActionResult> Index()
         {
-            return View(await db.EncryptedItems.ToListAsync());
+            string userID = User.Identity.GetUserId();
+
+            //Query to list all items user is permitted by item owner to view, including user's own
+            IQueryable<EncryptedItem> queryPermitted = from item in db.EncryptedItems
+                            where item.PermittedUserIDsAsString.Contains(userID) || item.IsPrivate == false //TODO ***Unsure if this OR statement works***
+                            select item;
+
+            //async execute query
+            List<EncryptedItem> items = await queryPermitted.ToListAsync();
+
+            return View(items);
         }
 
         // GET: EncryptedItems/Details/5
@@ -64,15 +75,15 @@ namespace SecuryptMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Name,OwnerID,StorageLocation")] EncryptedItem encryptedItem)
+        public async Task<ActionResult> Edit([Bind(Include = "Name,OwnerID,IsPrivate,StorageLocation")] EncryptedItem eItem)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(encryptedItem).State = EntityState.Modified;
+                db.Entry(eItem).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(encryptedItem);
+            return View(eItem);
         }
 
         // GET: EncryptedItems/Delete/5

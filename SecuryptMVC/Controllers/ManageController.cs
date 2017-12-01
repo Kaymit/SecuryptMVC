@@ -15,10 +15,6 @@ namespace SecuryptMVC.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        /// <summary>
-        /// Error string for GetPublicKey()
-        /// </summary>
-        private string errorString = "No Public Key exists for this user. Please create another user or contact administrators.";
 
         public ManageController()
         {

@@ -39,7 +39,12 @@ namespace SecuryptMVC.Controllers
             CryptoHandler ch = new CryptoHandler();
             ch.initProgram();
 
+            //get current User ID
             string ownerID = User.Identity.GetUserId();
+
+            //create list of permitted user IDs and add current owner ID
+            List<string> permittedUserIDs = new List<string>();
+            permittedUserIDs.Add(User.Identity.GetUserId());
 
             var f = Request.Files[0];
             if (f == null)
@@ -64,8 +69,17 @@ namespace SecuryptMVC.Controllers
                     ViewBag.deleteSuccess = "true";
                 }
 
-                //files private by default
-                db.EncryptedItems.Add(new EncryptedItem { Name = fileName, OwnerID = ownerID, StorageLocation = storagePath, IsPrivate = true });
+                //Workaround: adds OwnerID as PermittedUserIDsAsString because with only 1 string, 
+                //it is equal to that string (as opposed to having a comma and then the next string)
+                EncryptedItem item = new EncryptedItem {
+                    Name = fileName,
+                    OwnerID = ownerID,
+                    StorageLocation = storagePath,
+                    PermittedUserIDs = permittedUserIDs,
+                    IsPrivate = true
+                };
+
+                db.EncryptedItems.Add(item);
                 db.SaveChangesAsync(); //add new EncryptedItem to database
                                        //TODO move to helper class?
 

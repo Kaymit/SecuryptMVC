@@ -9,6 +9,9 @@ using SecuryptMVC.Utility;
 using SecuryptMVC.DAL;
 using SecuryptMVC.Models;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 
 namespace SecuryptMVC.Controllers
 {
@@ -36,7 +39,7 @@ namespace SecuryptMVC.Controllers
             CryptoHandler ch = new CryptoHandler();
             ch.initProgram();
 
-            string publicKey = ch.PublicKeyToString();
+            string ownerID = User.Identity.GetUserId();
 
             var f = Request.Files[0];
             if (f == null)
@@ -62,7 +65,7 @@ namespace SecuryptMVC.Controllers
                 }
 
                 //files private by default
-                db.EncryptedItems.Add(new EncryptedItem { Name = fileName, PublicKey = publicKey, StorageLocation = storagePath, IsPrivate = true });
+                db.EncryptedItems.Add(new EncryptedItem { Name = fileName, OwnerID = ownerID, StorageLocation = storagePath, IsPrivate = true });
                 db.SaveChangesAsync(); //add new EncryptedItem to database
                                        //TODO move to helper class?
 

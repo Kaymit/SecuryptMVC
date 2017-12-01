@@ -151,12 +151,7 @@ namespace SecuryptMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                //CryptoHandler creates keypair for user and adds Public Key to User
-                CryptoHandler ch = new CryptoHandler();
-                ch.initProgram();
-                string publicKey = ch.PublicKeyToString();
-
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PublicKey = publicKey };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

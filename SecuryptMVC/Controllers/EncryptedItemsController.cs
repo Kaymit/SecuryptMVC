@@ -64,7 +64,7 @@ namespace SecuryptMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Name,PublicKey,StorageLocation")] EncryptedItem encryptedItem)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,Name,OwnerID,StorageLocation")] EncryptedItem encryptedItem)
         {
             if (ModelState.IsValid)
             {

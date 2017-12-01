@@ -197,6 +197,7 @@
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="DAL\DBInitializer.cs" />
     <Compile Include="DAL\FileContext.cs" />
+    <Compile Include="DAL\UserInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -206,7 +207,6 @@
     <Compile Include="Models\EncryptedItem.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\UploadViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utility\CryptoHandler.cs" />

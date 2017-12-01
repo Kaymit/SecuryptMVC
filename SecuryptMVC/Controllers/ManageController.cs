@@ -70,7 +70,6 @@ namespace SecuryptMVC.Controllers
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
-                PublicKey = GetPublicKey(),
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
@@ -366,20 +365,6 @@ namespace SecuryptMVC.Controllers
                 return user.PasswordHash != null;
             }
             return false;
-        }
-
-        /// <summary>
-        /// returns User's Public Key if it exists
-        /// </summary>
-        /// <returns></returns>
-        private string GetPublicKey()
-        {
-            var user = UserManager.FindById(User.Identity.GetUserId());
-            if (user != null)
-            {
-                return user.PublicKey;
-            }
-            else return errorString;
         }
 
         private bool HasPhoneNumber()

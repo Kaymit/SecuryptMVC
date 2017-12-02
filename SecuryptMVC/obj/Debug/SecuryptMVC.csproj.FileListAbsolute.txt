@@ -363,13 +363,10 @@ C:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.cspr
 D:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\bin\Resources.dll
 D:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\bin\Resources.pdb
 D:\Dropbox\BCIT\Visual Studio\SecuryptMVC\SecuryptMVC\bin\de\Resources.resources.dll
-D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\Microsoft.CodeAnalysis.dll
-D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\System.IO.Compression.dll
-D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\VBCSCompiler.exe
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\ApplicationInsights.config
+D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\SecuryptMVC.dll.config
+D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\SecuryptMVC.dll
+D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\SecuryptMVC.pdb
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\csc.exe
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\csc.exe.config
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\csc.rsp
@@ -377,9 +374,13 @@ D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\csi.exe
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\csi.exe.config
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\csi.rsp
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\Microsoft.CodeAnalysis.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\Microsoft.VisualBasic.Core.targets
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\Microsoft.Win32.Primitives.dll
@@ -389,6 +390,7 @@ D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\System.Console.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\System.Diagnostics.Process.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\System.IO.Compression.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\System.IO.FileSystem.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\System.IO.FileSystem.Primitives.dll
@@ -411,6 +413,7 @@ D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\System.Xml.XPath.XDocument.d
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\vbc.exe
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\vbc.exe.config
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\vbc.rsp
+D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\VBCSCompiler.exe
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\roslyn\VBCSCompiler.exe.config
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\Antlr3.Runtime.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\EntityFramework.dll
@@ -482,6 +485,3 @@ D:\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.csprojResolveAsse
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.csproj.CoreCompileInputs.cache
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.pdb
-D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\SecuryptMVC.dll.config
-D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\SecuryptMVC.dll
-D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\SecuryptMVC.pdb

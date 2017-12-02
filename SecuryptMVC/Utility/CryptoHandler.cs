@@ -83,6 +83,18 @@ namespace SecuryptMVC.Utility
             int lIV = rjndl.IV.Length;
             LenIV = BitConverter.GetBytes(lIV);
 
+
+            int startFileName = inFile.LastIndexOf("\\") + 1;
+
+            //old method for saving file name //string outFile = inFile.Substring(startFileName, inFile.LastIndexOf(".") - startFileName) + ".enc";
+            // Change the file's extension to ".enc"
+            string outFile;
+            if (!inFile.ToLower().Contains('.'))
+                outFile = inFile + ".enc";
+            else
+                outFile = inFile.Substring(0, inFile.LastIndexOf(".")) + ".enc";
+            
+
             // Write the following to the FileStream
             // for the encrypted file (outFs):
             // - length of the key
@@ -90,13 +102,6 @@ namespace SecuryptMVC.Utility
             // - encrypted key
             // - the IV
             // - the encrypted cipher content
-
-            int startFileName = inFile.LastIndexOf("\\") + 1;
-
-            // Change the file's extension to ".enc"
-            //string outFile = inFile.Substring(startFileName, inFile.LastIndexOf(".") - startFileName) + ".enc";
-            string outFile = inFile.Substring(0, inFile.LastIndexOf(".")) + ".enc";
-            
             using (FileStream outFs = new FileStream(outFile, FileMode.Create))
             {
                 //write header for encrypted file
@@ -272,7 +277,6 @@ namespace SecuryptMVC.Utility
                 }
                 inFs.Close();
             }
-
         }
 
         //https://docs.microsoft.com/en-us/dotnet/standard/security/how-to-store-asymmetric-keys-in-a-key-container

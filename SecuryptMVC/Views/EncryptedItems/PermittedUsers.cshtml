@@ -1,0 +1,14 @@
+﻿@model SecuryptMVC.Models.PermittedUsersViewModel
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>View</h2>
+
+<div>
+    @foreach (var element in Model.PermittedUserIDs)
+    {
+        <p>@Html.DisplayFor(m => element)</p>
+    }
+</div>

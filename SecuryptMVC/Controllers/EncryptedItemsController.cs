@@ -49,6 +49,25 @@ namespace SecuryptMVC.Controllers
             return View(encryptedItem);
         }
 
+        public async Task<ActionResult> PermittedUsers(int? id)
+        {
+            string userID = User.Identity.GetUserId();
+
+            //async execute query
+            EncryptedItem encryptedItem = await db.EncryptedItems.FindAsync(id);
+            if (encryptedItem == null)
+            {
+                return HttpNotFound();
+            }
+
+            PermittedUsersViewModel view = new PermittedUsersViewModel
+            {
+                PermittedUserIDs = encryptedItem.PermittedUserIDs
+            };
+
+            return View(view);
+        }
+
         // GET: EncryptedItems/Create
         public ActionResult Create()
         {
@@ -75,15 +94,15 @@ namespace SecuryptMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Name,OwnerID,IsPrivate,StorageLocation")] EncryptedItem eItem)
+        public async Task<ActionResult> Edit([Bind(Include = "Name,OwnerID,IsPrivate,StorageLocation")] EncryptedItem encryptedItem)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(eItem).State = EntityState.Modified;
+                db.Entry(encryptedItem).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(eItem);
+            return View(encryptedItem);
         }
 
         // GET: EncryptedItems/Delete/5

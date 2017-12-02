@@ -69,8 +69,6 @@ namespace SecuryptMVC.Controllers
                     ViewBag.deleteSuccess = "true";
                 }
 
-                //Workaround: adds OwnerID as PermittedUserIDsAsString because with only 1 string, 
-                //it is equal to that string (as opposed to having a comma and then the next string)
                 EncryptedItem item = new EncryptedItem {
                     Name = fileName,
                     OwnerID = ownerID,

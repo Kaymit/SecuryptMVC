@@ -49,24 +49,6 @@ namespace SecuryptMVC.Controllers
             return View(encryptedItem);
         }
 
-        public async Task<ActionResult> PermittedUsers(int? id)
-        {
-            string userID = User.Identity.GetUserId();
-
-            //async execute query
-            EncryptedItem encryptedItem = await db.EncryptedItems.FindAsync(id);
-            if (encryptedItem == null)
-            {
-                return HttpNotFound();
-            }
-
-            PermittedUsersViewModel view = new PermittedUsersViewModel
-            {
-                PermittedUserIDs = encryptedItem.PermittedUserIDs
-            };
-
-            return View(view);
-        }
 
         // GET: EncryptedItems/Create
         public ActionResult Create()
@@ -94,7 +76,7 @@ namespace SecuryptMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Name,OwnerID,IsPrivate,StorageLocation")] EncryptedItem encryptedItem)
+        public async Task<ActionResult> Edit([Bind(Include = "OwnerID,IsPrivate")] EncryptedItem encryptedItem)
         {
             if (ModelState.IsValid)
             {
@@ -104,6 +86,52 @@ namespace SecuryptMVC.Controllers
             }
             return View(encryptedItem);
         }
+
+        /// <summary>
+        /// returns list of users permitted to access this item
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<ActionResult> PermittedUsers(int? id)
+        {
+            string userID = User.Identity.GetUserId();
+
+            EncryptedItem encryptedItem = await db.EncryptedItems.FindAsync(id);
+            if (encryptedItem == null)
+            {
+                return HttpNotFound();
+            }
+
+            PermittedUsersViewModel view = new PermittedUsersViewModel
+            {
+                PermittedUserIDs = encryptedItem.PermittedUserIDs,
+                ItemID = (int)id //cast from nullable int
+            };
+
+            return View(view);
+        }
+
+        /*
+        public async Task<ActionResult> AddPermission(string email)
+        {
+            string userID = User.Identity.GetUserId();
+
+            EncryptedItem encryptedItem = await db.EncryptedItems.FindAsync(id);
+            if (encryptedItem == null)
+            {
+                return HttpNotFound();
+            }
+
+            PermittedUsersViewModel view = new PermittedUsersViewModel
+            {
+                PermittedUserIDs = encryptedItem.PermittedUserIDs,
+                ItemID = (int)id //cast from nullable int
+            };
+
+            return View(view);
+        }
+        */
 
         // GET: EncryptedItems/Delete/5
         public async Task<ActionResult> Delete(int? id)

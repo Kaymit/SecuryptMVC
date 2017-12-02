@@ -35,6 +35,14 @@
             @Html.DisplayFor(model => model.StorageLocation)
         </dd>
 
+        <dt>
+            Users permitted to access this file:
+        </dt>
+
+        <dd>
+            @Html.ActionLink("Permitted Users", "PermittedUsers", new { id = Model.ID })
+        </dd>
+
     </dl>
 </div>
 <p>

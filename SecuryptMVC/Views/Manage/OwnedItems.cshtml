@@ -1,0 +1,15 @@
+﻿@model SecuryptMVC.Models.UserOwnedItemsViewModel
+
+@{
+    ViewBag.Title = "Your Encrypted Items";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Items</h2>
+
+<div>
+    @foreach (var element in Model.OwnedItems)
+    {
+        <p>@Html.DisplayFor(m => element)</p>
+    }
+</div>

@@ -7,12 +7,16 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SecuryptMVC.Models;
+using SecuryptMVC.DAL;
+using System.Collections.Generic;
+using System.Data.Entity;
 
 namespace SecuryptMVC.Controllers
 {
     [Authorize]
     public class ManageController : Controller
     {
+        private FileContext db = new FileContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -50,7 +54,6 @@ namespace SecuryptMVC.Controllers
             }
         }
 
-        //
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
@@ -66,6 +69,7 @@ namespace SecuryptMVC.Controllers
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
+                UserID = userId,
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
@@ -75,7 +79,28 @@ namespace SecuryptMVC.Controllers
             return View(model);
         }
 
-        //
+        /// <summary>
+        /// GET: requests list of user's owned items
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ActionResult> OwnedItems()
+        {
+            string userID = User.Identity.GetUserId();
+            IQueryable<EncryptedItem> queryOwned = from item in db.EncryptedItems
+                                                       where item.OwnerID == userID
+                                                       select item;
+
+            List<EncryptedItem> items = await queryOwned.ToListAsync();
+            UserOwnedItemsViewModel model = new UserOwnedItemsViewModel()
+            {
+                UserID = userID,
+                OwnedItems = items
+            };
+
+            return View(model);
+        }
+
         // POST: /Manage/RemoveLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -130,7 +155,6 @@ namespace SecuryptMVC.Controllers
             return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
         }
 
-        //
         // POST: /Manage/EnableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -145,7 +169,6 @@ namespace SecuryptMVC.Controllers
             return RedirectToAction("Index", "Manage");
         }
 
-        //
         // POST: /Manage/DisableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -160,7 +183,6 @@ namespace SecuryptMVC.Controllers
             return RedirectToAction("Index", "Manage");
         }
 
-        //
         // GET: /Manage/VerifyPhoneNumber
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
@@ -169,7 +191,6 @@ namespace SecuryptMVC.Controllers
             return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
         }
 
-        //
         // POST: /Manage/VerifyPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -194,7 +215,6 @@ namespace SecuryptMVC.Controllers
             return View(model);
         }
 
-        //
         // POST: /Manage/RemovePhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -213,14 +233,12 @@ namespace SecuryptMVC.Controllers
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
 
-        //
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
         {
             return View();
         }
 
-        //
         // POST: /Manage/ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -244,14 +262,12 @@ namespace SecuryptMVC.Controllers
             return View(model);
         }
 
-        //
         // GET: /Manage/SetPassword
         public ActionResult SetPassword()
         {
             return View();
         }
 
-        //
         // POST: /Manage/SetPassword
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -276,7 +292,6 @@ namespace SecuryptMVC.Controllers
             return View(model);
         }
 
-        //
         // GET: /Manage/ManageLogins
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
@@ -299,7 +314,6 @@ namespace SecuryptMVC.Controllers
             });
         }
 
-        //
         // POST: /Manage/LinkLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -309,7 +323,6 @@ namespace SecuryptMVC.Controllers
             return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
         }
 
-        //
         // GET: /Manage/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {

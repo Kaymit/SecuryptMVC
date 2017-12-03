@@ -286,6 +286,7 @@
     <Content Include="Views\EncryptedItems\PermittedUsers.cshtml" />
     <Content Include="Views\EncryptedItems\AddPermission.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
+    <Content Include="Views\Manage\OwnedItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -37,7 +37,7 @@ namespace SecuryptMVC.Controllers
         {
             //Register CryptoHandler and ensure keys are current
             CryptoHandler ch = new CryptoHandler();
-            ch.initProgram();
+            ch.RegisterKeys();
 
             //get current User ID
             string ownerID = User.Identity.GetUserId();
@@ -53,13 +53,13 @@ namespace SecuryptMVC.Controllers
             }
             foreach (var file in files)
             {
+                //give file the generated GUID
                 string fileName = file.FileName;
                 string filePath = Guid.NewGuid() + Path.GetExtension(file.FileName);
-
-                //encrypt file and give it the generated GUID
-
+                
                 string storagePath = Path.Combine(Server.MapPath("~/UploadedFiles"), filePath);
 
+                //save and encrypt fiile
                 file.SaveAs(storagePath);
                 ch.EncryptFile(storagePath);
 

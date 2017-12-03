@@ -38,8 +38,8 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-            @Html.ActionLink("Decrypt and Download", "Download", "DownloadController", new { id = item.ID }, null)
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID }) | 
+            @Html.ActionLink("Decrypt and Download", "Download", new { id = item.ID })
         </td>
     </tr>
 }

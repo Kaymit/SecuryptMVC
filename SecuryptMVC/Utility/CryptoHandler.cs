@@ -23,19 +23,24 @@ namespace SecuryptMVC.Utility
         internal CspParameters cspp;
         internal RSACryptoServiceProvider rsa;
 
+        //default constructor
         public CryptoHandler() { }
 
-        internal void initProgram()
+        /// <summary>
+        /// Initializes CryptoHandler, either gets or creates Securypt RSA Keypair, and prints info
+        /// </summary>
+        internal void RegisterKeys()
         {
             try
             {
                 cspp = new CspParameters();
-                cspp.Flags |= CspProviderFlags.UseMachineKeyStore; //set CspProvider to use Machine Key Container, not User Key Container
+                //cspp.Flags |= CspProviderFlags.UseMachineKeyStore; //set CspProvider to use Machine Key Container, not User Key Container
 
                 cspp.KeyContainerName = securyptKeyName;
                 rsa = new RSACryptoServiceProvider(cspp);
                 rsa.PersistKeyInCsp = true;
 
+                #region Debugging: check if key exists and print result
                 if (doesKeyExist(securyptKeyName))
                 {
                     Console.WriteLine("Keys found... Importing...");
@@ -44,13 +49,8 @@ namespace SecuryptMVC.Utility
                 else
                 {
                     Console.WriteLine("No Securypt keys found");
-
-                    //Console.WriteLine("Key pair generated and stored in container from container : {0}", rsa.ToXmlString(true));
                 }
-
-                //tests the RSA algorithm by encrypting a short string, printing the bytes, and decrypting the bytes
-                //testRSAEncrypt(textToEncrypt);
-
+                #endregion
             }
             catch (Exception e)
             {
@@ -145,6 +145,108 @@ namespace SecuryptMVC.Utility
             }
         }
 
+        //example from https://docs.microsoft.com/en-us/dotnet/standard/security/walkthrough-creating-a-cryptographic-application
+        internal MemoryStream DecryptFile(string inFileWithExtension)
+        {
+            // Get file extension from inFile string 
+            // (which is the storage path, but with original file extension)
+            string inFile;
+            if (!inFileWithExtension.ToLower().Contains('.'))
+                inFile = inFileWithExtension + ".enc";
+            else
+                inFile = inFileWithExtension.Substring(0, inFileWithExtension.LastIndexOf(".")) + ".enc";
+
+            // Create instance of Rijndael for
+            // symetric decryption of the data.
+            RijndaelManaged rjndl = new RijndaelManaged();
+            rjndl.KeySize = 256;
+            rjndl.BlockSize = 256;
+            rjndl.Mode = CipherMode.CBC;
+
+            // Create byte arrays to get the length of
+            // the encrypted key and IV.
+            // These values were stored as 4 bytes each
+            // at the beginning of the encrypted package.
+            byte[] LenK = new byte[4];
+            byte[] LenIV = new byte[4];
+
+            // Consruct the file name for the decrypted file.
+            //string outFile = inFile.Substring(0, inFile.LastIndexOf(".")) + ".txt"; //*******TODO change returned file type to correct type**************
+
+            // Use FileStream objects to read the encrypted
+            // file (inFs) and save the decrypted file (outFs).
+            FileStream inFs = new FileStream(inFile, FileMode.Open);
+            inFs.Seek(0, SeekOrigin.Begin);
+            inFs.Seek(0, SeekOrigin.Begin);
+            inFs.Read(LenK, 0, 3);
+            inFs.Seek(4, SeekOrigin.Begin);
+            inFs.Read(LenIV, 0, 3);
+
+            // Convert the lengths to integer values.
+            int lenK = BitConverter.ToInt32(LenK, 0);
+            int lenIV = BitConverter.ToInt32(LenIV, 0);
+
+            // Determine the start postition of
+            // the ciphter text (startC)
+            // and its length(lenC).
+            int startC = lenK + lenIV + 8;
+            int lenC = (int)inFs.Length - startC;
+
+            // Create the byte arrays for
+            // the encrypted Rijndael key,
+            // the IV, and the cipher text.
+            byte[] KeyEncrypted = new byte[lenK];
+            byte[] IV = new byte[lenIV];
+
+            // Extract the key and IV
+            // starting from index 8
+            // after the length values.
+            inFs.Seek(8, SeekOrigin.Begin);
+            inFs.Read(KeyEncrypted, 0, lenK);
+            inFs.Seek(8 + lenK, SeekOrigin.Begin);
+            inFs.Read(IV, 0, lenIV);
+            //Directory.CreateDirectory(DecrFolder);
+
+            // Use RSACryptoServiceProvider
+            // to decrypt the Rijndael key.
+            byte[] KeyDecrypted = rsa.Decrypt(KeyEncrypted, false);
+
+            // Decrypt the key.
+            ICryptoTransform transform = rjndl.CreateDecryptor(KeyDecrypted, IV);
+
+            // Decrypt the cipher text from
+            // from the FileStream of the encrypted
+            // file (inFs) into the MemoryStream
+            // for the decrypted item (outStream).
+            MemoryStream outStream = new MemoryStream();
+            int count = 0;
+            int offset = 0;
+
+            // blockSizeBytes can be any arbitrary size.
+            int blockSizeBytes = rjndl.BlockSize / 8;
+            byte[] data = new byte[blockSizeBytes];
+
+            // Start at the beginning
+            // of the cipher text.
+            inFs.Seek(startC, SeekOrigin.Begin);
+            CryptoStream outStreamDecrypted = new CryptoStream(outStream, transform, CryptoStreamMode.Write);
+                    
+            do
+            {
+                count = inFs.Read(data, 0, blockSizeBytes);
+                offset += count;
+                outStreamDecrypted.Write(data, 0, count);
+            }
+            while (count > 0);
+
+            //unwrapped streams so outStream doesn't get disposed of before 
+            //EncryptedItemController.Download(int id) returns file
+            //https://stackoverflow.com/questions/10934585/memorystream-cannot-access-a-closed-stream
+            outStreamDecrypted.FlushFinalBlock();
+            outStream.Position = 0;
+            return outStream;
+        }
+
         //https://stackoverflow.com/questions/9995839/how-to-make-random-string-of-numbers-and-letters-with-a-length-of-5
         public string RandomString(int length)
         {
@@ -161,123 +263,12 @@ namespace SecuryptMVC.Utility
             return builder.ToString();
         }
 
-        internal void archiveFiles()
-        {
-            //check if file is already archived
-            //if not, open archive file
-            //add files to archive and close file
-        }
-
         //simple function to return Public Key XML string
         public string PublicKeyToString()
         {
             return rsa.ToXmlString(false); //false returns only Public Key
         }
 
-        //example from https://docs.microsoft.com/en-us/dotnet/standard/security/walkthrough-creating-a-cryptographic-application
-        internal void DecryptFile(string inFile)
-        {
-            // Create instance of Rijndael for
-            // symetric decryption of the data.
-            RijndaelManaged rjndl = new RijndaelManaged();
-            rjndl.KeySize = 256;
-            rjndl.BlockSize = 256;
-            rjndl.Mode = CipherMode.CBC;
-
-            // Create byte arrays to get the length of
-            // the encrypted key and IV.
-            // These values were stored as 4 bytes each
-            // at the beginning of the encrypted package.
-            byte[] LenK = new byte[4];
-            byte[] LenIV = new byte[4];
-
-            // Consruct the file name for the decrypted file.
-            string outFile = inFile.Substring(0, inFile.LastIndexOf(".")) + ".txt";
-
-            // Use FileStream objects to read the encrypted
-            // file (inFs) and save the decrypted file (outFs).
-            using (FileStream inFs = new FileStream(inFile, FileMode.Open))
-            {
-
-                inFs.Seek(0, SeekOrigin.Begin);
-                inFs.Seek(0, SeekOrigin.Begin);
-                inFs.Read(LenK, 0, 3);
-                inFs.Seek(4, SeekOrigin.Begin);
-                inFs.Read(LenIV, 0, 3);
-
-                // Convert the lengths to integer values.
-                int lenK = BitConverter.ToInt32(LenK, 0);
-                int lenIV = BitConverter.ToInt32(LenIV, 0);
-
-                // Determine the start postition of
-                // the ciphter text (startC)
-                // and its length(lenC).
-                int startC = lenK + lenIV + 8;
-                int lenC = (int)inFs.Length - startC;
-
-                // Create the byte arrays for
-                // the encrypted Rijndael key,
-                // the IV, and the cipher text.
-                byte[] KeyEncrypted = new byte[lenK];
-                byte[] IV = new byte[lenIV];
-
-                // Extract the key and IV
-                // starting from index 8
-                // after the length values.
-                inFs.Seek(8, SeekOrigin.Begin);
-                inFs.Read(KeyEncrypted, 0, lenK);
-                inFs.Seek(8 + lenK, SeekOrigin.Begin);
-                inFs.Read(IV, 0, lenIV);
-                //Directory.CreateDirectory(DecrFolder);
-
-                // Use RSACryptoServiceProvider
-                // to decrypt the Rijndael key.
-                byte[] KeyDecrypted = rsa.Decrypt(KeyEncrypted, false);
-
-                // Decrypt the key.
-                ICryptoTransform transform = rjndl.CreateDecryptor(KeyDecrypted, IV);
-
-                // Decrypt the cipher text from
-                // from the FileSteam of the encrypted
-                // file (inFs) into the FileStream
-                // for the decrypted file (outFs).
-                using (FileStream outFs = new FileStream(outFile, FileMode.Create))
-                {
-
-                    int count = 0;
-                    int offset = 0;
-
-                    // blockSizeBytes can be any arbitrary size.
-                    int blockSizeBytes = rjndl.BlockSize / 8;
-                    byte[] data = new byte[blockSizeBytes];
-
-
-                    // By decrypting a chunk a time,
-                    // you can save memory and
-                    // accommodate large files.
-
-                    // Start at the beginning
-                    // of the cipher text.
-                    inFs.Seek(startC, SeekOrigin.Begin);
-                    using (CryptoStream outStreamDecrypted = new CryptoStream(outFs, transform, CryptoStreamMode.Write))
-                    {
-                        do
-                        {
-                            count = inFs.Read(data, 0, blockSizeBytes);
-                            offset += count;
-                            outStreamDecrypted.Write(data, 0, count);
-
-                        }
-                        while (count > 0);
-
-                        outStreamDecrypted.FlushFinalBlock();
-                        outStreamDecrypted.Close();
-                    }
-                    outFs.Close();
-                }
-                inFs.Close();
-            }
-        }
 
         //https://docs.microsoft.com/en-us/dotnet/standard/security/how-to-store-asymmetric-keys-in-a-key-container
         internal static void DeleteKeyFromContainer(string ContainerName)
@@ -313,89 +304,5 @@ namespace SecuryptMVC.Utility
             }
             return true;
         }
-
-        internal void testRSAEncrypt(string stringToEncrypt)
-        {
-            try
-            {
-                UnicodeEncoding ByteConverter = new UnicodeEncoding();
-
-                Console.WriteLine("String to encrypt: " + stringToEncrypt);
-
-                byte[] bytesToEncrypt = ByteConverter.GetBytes(stringToEncrypt);    //gets bytes from string
-                byte[] encryptedBytes = rsa.Encrypt(bytesToEncrypt, false);         //encrypts bytes with RSA
-                Console.WriteLine("Encrypted Bytes: " + Convert.ToBase64String(encryptedBytes));
-
-                byte[] decryptedBytes = rsa.Decrypt(encryptedBytes, false);         //decrypts bytes with RSA 
-                Console.WriteLine("Decrypted Bytes: " + Convert.ToBase64String(decryptedBytes));
-
-                String decryptedText = ByteConverter.GetString(decryptedBytes);     //decodes bytes in Unicode
-                Console.WriteLine("Decrypted text: " + decryptedText);              //prints resulting text
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-        }
-
-        /*
-        //opens file for EncryptFile(string inFile)
-        internal void EncryptFileDialog()
-        {
-            if (rsa == null) ;
-            //MessageBox.Show("Key not set.");
-            else
-            {
-                // Display a dialog box to select a file to encrypt.
-                OpenFileDialog dlg = new OpenFileDialog();
-                //dlg.InitialDirectory = SrcFolder;
-
-                Nullable<bool> result = dlg.ShowDialog();
-
-                if (result == true)
-                {
-                    string fName = dlg.FileName;
-                    if (fName != null)
-                    {
-                        FileInfo fInfo = new FileInfo(fName);
-                        // Pass the file name without the path.
-                        string name = fInfo.FullName;
-                        EncryptFile(name);
-                    }
-                }
-                else return; //file not selected, so return to page
-                
-            }
-        }
-        */
-
-        /*
-        //helper for DecryptFile(string inFile)
-        internal void DecryptFileDialog()
-        {
-            
-            if (rsa == null)
-                MessageBox.Show("Key not set.");
-            else
-            {
-                // Display a dialog box to select the encrypted file.
-                OpenFileDialog dlg = new OpenFileDialog();
-                //dlg.InitialDirectory = EncrFolder;
-
-                Nullable<bool> result = dlg.ShowDialog();
-
-                if (result == true)
-                {
-                    string fName = dlg.FileName;
-                    if (fName != null)
-                    {
-                        FileInfo fi = new FileInfo(fName);
-                        string name = fi.Name;
-                        DecryptFile(name);
-                    }
-                }
-            }
-        }
-        */
     }
 }

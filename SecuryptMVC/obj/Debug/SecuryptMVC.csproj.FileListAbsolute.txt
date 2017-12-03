@@ -485,3 +485,6 @@ D:\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.csprojResolveAsse
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.csproj.CoreCompileInputs.cache
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.pdb
+D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\SendGrid.dll
+D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\SendGrid.pdb
+D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\SendGrid.xml

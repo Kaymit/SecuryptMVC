@@ -194,7 +194,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\DownloadController.cs" />
     <Compile Include="Controllers\EncryptedItemsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -286,6 +285,7 @@
     <Content Include="Views\Upload\Index.cshtml" />
     <Content Include="Views\EncryptedItems\PermittedUsers.cshtml" />
     <Content Include="Views\EncryptedItems\AddPermission.cshtml" />
+    <Content Include="Views\Shared\Info.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

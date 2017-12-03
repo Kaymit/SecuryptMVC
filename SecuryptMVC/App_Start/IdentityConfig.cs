@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using SecuryptMVC.Models;
+using SendGrid.Helpers.Mail;
+using SendGrid;
 
 namespace SecuryptMVC
 {
@@ -19,7 +17,33 @@ namespace SecuryptMVC
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            return configSendGridasync(message);
+        }
+
+        /// <summary>
+        /// Configures an IdentityMessage to be sent by Email service + SendGrid cloud mail server
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        /// <references>https://docs.microsoft.com/en-us/aspnet/identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity</references>
+        private Task configSendGridasync(IdentityMessage message)
+        {
+            var apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY"); 
+            var client = new SendGridClient(apiKey);
+            var myMessage = new SendGridMessage();
+            myMessage.From = new SendGrid.Helpers.Mail.EmailAddress(
+                                "admin@techpro2017.com", "Kevin M.");
+            myMessage.HtmlContent = message.Body;
+
+            var msg = MailHelper.CreateSingleEmail(
+                myMessage.From, 
+                SendGrid.Helpers.Mail.MailHelper.StringToEmailAddress(message.Destination), 
+                message.Subject, 
+                message.Body, 
+                message.Body
+            );
+
+            return client.SendEmailAsync(msg);
         }
     }
 

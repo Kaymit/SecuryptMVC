@@ -14,6 +14,8 @@ using Microsoft.AspNet.Identity;
 using System.IO;
 using SendGrid.Helpers.Mail;
 using SendGrid;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 
 //https://support.microsoft.com/en-us/help/323246/how-to-upload-a-file-to-a-web-server-in-asp-net-by-using-visual-c--net
 namespace SecuryptMVC.Controllers
@@ -24,6 +26,10 @@ namespace SecuryptMVC.Controllers
         /// Database context reference
         /// </summary>
         private FileContext db = new FileContext();
+        /// <summary>
+        /// ASP.NET Identity ApplicationDbContext reference
+        /// </summary>
+        ApplicationDbContext dbID = new ApplicationDbContext();
         /// <summary>
         /// CryptoHandler object reference
         /// </summary>
@@ -141,10 +147,15 @@ namespace SecuryptMVC.Controllers
             string userID = User.Identity.GetUserId();
 
             EncryptedItem encryptedItem = await db.EncryptedItems.FindAsync(id);
-            if (encryptedItem == null)
+
+            //if you aren't the owner, you can't access list of permitted users
+            if (encryptedItem.OwnerID != userID)
             {
-                return HttpNotFound();
+                ViewBag.Message = "Only the owner of this file may change the permissions";
+                return View("Info");
             }
+
+            if (encryptedItem == null) { return HttpNotFound(); }
 
             PermittedUsersViewModel view = new PermittedUsersViewModel
             {
@@ -155,26 +166,77 @@ namespace SecuryptMVC.Controllers
             return View(view);
         }
 
-        /*
-        public async Task<ActionResult> AddPermission(string email)
+        /// <summary>
+        /// POST: attempts to add a User to the list of permissions for this file
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ActionResult> AddPermission(AddPermissionViewModel model)
+        {
+            string userID = User.Identity.GetUserId();
+
+
+            EncryptedItem encryptedItem = await db.EncryptedItems.FindAsync(model.ItemID);
+
+            if (encryptedItem == null)
+            {
+                ViewBag.Message = "File not found: something spooky has happened, consider panicking";
+                return View("Info");
+            }
+            //check if user is owner of file
+            if (encryptedItem.OwnerID != userID)
+            {
+                ViewBag.Message = "You do not have permission to access this file, so you definitely don't have permission " +
+                    "to access or CHANGE the permissions!";
+                return View("Info");
+            }
+
+            var userManager = Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+
+            var userQuery = (from user in userManager.Users
+                                        where user.Email.Equals(model.UserEmail)
+                                        select user).Single();
+
+            string userIDToAdd = userQuery.Id;
+
+            encryptedItem.PermittedUserIDs.Add(userIDToAdd);
+            await db.SaveChangesAsync();
+
+            PermittedUsersViewModel view = new PermittedUsersViewModel
+            {
+                PermittedUserIDs = encryptedItem.PermittedUserIDs,
+                ItemID = model.ItemID
+            };
+
+            ViewBag.Message = "User " + model.UserEmail +  " successfully given permission to file.";
+            return View("Info");
+        }
+
+        /// <summary>
+        /// GET: returns AddPermission view for correct item
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<ActionResult> AddPermission(int id)
         {
             string userID = User.Identity.GetUserId();
 
             EncryptedItem encryptedItem = await db.EncryptedItems.FindAsync(id);
-            if (encryptedItem == null)
+            if (encryptedItem == null) { return HttpNotFound(); }
+
+            //check if user is owner of file
+            if (encryptedItem.OwnerID != userID)
             {
-                return HttpNotFound();
+                ViewBag.Message = "Only the owner of this file may change the permissions";
+                return View("Info");
             }
 
-            PermittedUsersViewModel view = new PermittedUsersViewModel
-            {
-                PermittedUserIDs = encryptedItem.PermittedUserIDs,
-                ItemID = (int)id //cast from nullable int
-            };
+            AddPermissionViewModel view = new AddPermissionViewModel { ItemID = id };
 
             return View(view);
         }
-        */
 
         // GET: EncryptedItems/Delete/5
         public async Task<ActionResult> Delete(int? id)

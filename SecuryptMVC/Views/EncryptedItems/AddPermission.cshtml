@@ -1,8 +1,10 @@
 ﻿@model SecuryptMVC.Models.AddPermissionViewModel
 
 <div>
-    @using (Html.BeginForm("AddPermission", "EncryptedItemsController", FormMethod.Post))
+    <br/><br/>
+    @using (Html.BeginForm("AddPermission", "EncryptedItems", FormMethod.Post))
     {
+        @Html.HiddenFor(m => m.ItemID)
         @Html.TextBoxFor(m => m.UserEmail)
         <button type="submit">Add User</button>
     }

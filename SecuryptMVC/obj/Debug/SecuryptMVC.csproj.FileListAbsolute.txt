@@ -442,6 +442,7 @@ D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\Microsoft.Web.Infrastructure.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\Newtonsoft.Json.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\Owin.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\Resources.dll
+D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\SendGrid.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\System.Web.Helpers.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\System.Web.Mvc.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\System.Web.Optimization.dll
@@ -452,6 +453,9 @@ D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\System.Web.WebPages.Razor.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\WebGrease.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\Resources.pdb
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\Newtonsoft.Json.xml
+D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\SendGrid.pdb
+D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\SendGrid.xml
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\System.Web.Helpers.xml
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\System.Web.Mvc.xml
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\System.Web.Optimization.xml
@@ -460,7 +464,6 @@ D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\System.Web.WebPages.xml
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\System.Web.WebPages.Deployment.xml
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\System.Web.WebPages.Razor.xml
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\Antlr3.Runtime.pdb
-D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\Newtonsoft.Json.xml
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\EntityFramework.xml
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\EntityFramework.SqlServer.xml
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\Microsoft.AspNet.Identity.Core.xml
@@ -485,6 +488,3 @@ D:\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.csprojResolveAsse
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.csproj.CoreCompileInputs.cache
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.dll
 D:\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.pdb
-D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\SendGrid.dll
-D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\SendGrid.pdb
-D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\SendGrid.xml

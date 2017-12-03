@@ -7,7 +7,7 @@ namespace SecuryptMVC.Models
 {
     public class AddPermissionViewModel
     {
-        public int OwnerID { get; set; }
+        public int ItemID { get; set; }
         public string UserEmail { get; set; }
     }
 }

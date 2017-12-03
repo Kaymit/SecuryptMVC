@@ -125,7 +125,7 @@ namespace SecuryptMVC.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "OwnerID,IsPrivate")] EncryptedItem encryptedItem)
+        public async Task<ActionResult> Edit([Bind(Include = "Name,IsPrivate")] EncryptedItem encryptedItem)
         {
             if (ModelState.IsValid)
             {
@@ -151,8 +151,8 @@ namespace SecuryptMVC.Controllers
             //if you aren't the owner, you can't access list of permitted users
             if (encryptedItem.OwnerID != userID)
             {
-                ViewBag.Message = "Only the owner of this file may change the permissions";
-                return View("Info");
+                ViewBag.errorMessage = "Only the owner of this file may change the permissions";
+                return View("Error");
             }
 
             if (encryptedItem == null) { return HttpNotFound(); }
@@ -181,27 +181,34 @@ namespace SecuryptMVC.Controllers
 
             if (encryptedItem == null)
             {
-                ViewBag.Message = "File not found: something spooky has happened, consider panicking";
-                return View("Info");
+                ViewBag.errorMessage = "File not found: something spooky has happened...";
+                return View("Error");
             }
             //check if user is owner of file
             if (encryptedItem.OwnerID != userID)
             {
-                ViewBag.Message = "You do not have permission to access this file, so you definitely don't have permission " +
-                    "to access or CHANGE the permissions!";
-                return View("Info");
+                ViewBag.errorMessage = "Only the owner of this file may change the permissions";
+                return View("Error");
             }
 
             var userManager = Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
-            var userQuery = (from user in userManager.Users
-                                        where user.Email.Equals(model.UserEmail)
-                                        select user).Single();
+            try
+            {
+                var userQuery = (from user in userManager.Users
+                                 where user.Email.Equals(model.UserEmail)
+                                 select user).Single();
 
-            string userIDToAdd = userQuery.Id;
+                string userIDToAdd = userQuery.Id;
 
-            encryptedItem.PermittedUserIDs.Add(userIDToAdd);
-            await db.SaveChangesAsync();
+                encryptedItem.PermittedUserIDs.Add(userIDToAdd);
+                await db.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                ViewBag.errorMessage = "User not found";
+                return View("Error");
+            }
 
             PermittedUsersViewModel view = new PermittedUsersViewModel
             {
@@ -209,7 +216,7 @@ namespace SecuryptMVC.Controllers
                 ItemID = model.ItemID
             };
 
-            ViewBag.Message = "User " + model.UserEmail +  " successfully given permission to file.";
+            ViewBag.Message = "User " + model.UserEmail +  " successfully given permission to file";
             return View("Info");
         }
 
@@ -229,8 +236,8 @@ namespace SecuryptMVC.Controllers
             //check if user is owner of file
             if (encryptedItem.OwnerID != userID)
             {
-                ViewBag.Message = "Only the owner of this file may change the permissions";
-                return View("Info");
+                ViewBag.errorMessage = "Only the owner of this file may change the permissions";
+                return View("Error");
             }
 
             AddPermissionViewModel view = new AddPermissionViewModel { ItemID = id };

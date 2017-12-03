@@ -8,7 +8,7 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "EncryptedItems", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     
@@ -29,8 +29,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.OwnerID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.OwnerID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OwnerID, "", new { @class = "text-danger" })
+                @Html.ValueFor(model => model.OwnerID)
             </div>
         </div>
 
@@ -45,8 +44,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.StorageLocation, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.StorageLocation, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StorageLocation, "", new { @class = "text-danger" })
+                @Html.ValueFor(model => model.StorageLocation)
             </div>
         </div>
 

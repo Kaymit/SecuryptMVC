@@ -98,7 +98,7 @@ namespace SecuryptMVC.Controllers
                 GetOwinContext().
                 GetUserManager<ApplicationUserManager>().
                 FindById(item.OwnerID).
-                UserName;
+                Email;
             }
 
             UserOwnedItemsViewModel model = new UserOwnedItemsViewModel()

@@ -280,10 +280,17 @@ namespace SecuryptMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            string userID = User.Identity.GetUserId();
             EncryptedItem encryptedItem = await db.EncryptedItems.FindAsync(id);
             if (encryptedItem == null)
             {
-                return HttpNotFound();
+                ViewBag.errorMessage = "File not found: this is definitely not good";
+                return View("Error");
+            }
+            if (userID != encryptedItem.OwnerID)
+            {
+                ViewBag.errorMessage = "You are not the owner of this file and you may not delete it";
+                return View("Error");
             }
             return View(encryptedItem);
         }
@@ -294,6 +301,7 @@ namespace SecuryptMVC.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             EncryptedItem encryptedItem = await db.EncryptedItems.FindAsync(id);
+
             db.EncryptedItems.Remove(encryptedItem);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

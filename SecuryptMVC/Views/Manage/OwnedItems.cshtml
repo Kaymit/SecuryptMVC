@@ -8,8 +8,58 @@
 <h2>Items</h2>
 
 <div>
-    @foreach (var element in Model.OwnedItems)
-    {
-        <p>@Html.DisplayFor(m => element)</p>
-    }
+    
 </div>
+
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Owner Email
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Private
+        </th>
+        <th>
+            Permitted Users
+        </th>
+    </tr>
+
+    @foreach (var item in Model.OwnedItems)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.OwnerEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.IsPrivate)
+            </td>
+            <td>
+                @foreach (var id in item.PermittedUserIDs)
+                {
+                    <p>
+                        @id
+                    </p>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
+                @Html.ActionLink("Decrypt and Download", "Download", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>

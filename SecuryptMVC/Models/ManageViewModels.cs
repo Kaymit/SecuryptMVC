@@ -18,6 +18,8 @@ namespace SecuryptMVC.Models
     public class UserOwnedItemsViewModel
     {
         public string UserID { get; set; }
+        [Display(Name = "Email: ")]
+        public string UserEmail { get; set; }
         public List<EncryptedItem> OwnedItems { get; set; }
     }
 

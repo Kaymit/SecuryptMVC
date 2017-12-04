@@ -211,7 +211,6 @@
     <Compile Include="Models\EncryptedItem.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\PermittedUsersViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utility\CryptoHandler.cs" />
@@ -287,6 +286,7 @@
     <Content Include="Views\EncryptedItems\AddPermission.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
     <Content Include="Views\Manage\OwnedItems.cshtml" />
+    <Content Include="Views\EncryptedItems\_PartialEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -16,12 +16,17 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OwnerID)
+            @Html.DisplayNameFor(model => model.OwnerEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsPrivate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.StorageLocation)
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -30,15 +35,21 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.OwnerID)
+            @Html.DisplayFor(modelItem => item.OwnerEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsPrivate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StorageLocation)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID }) | 
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID }) | 
             @Html.ActionLink("Decrypt and Download", "Download", new { id = item.ID })
         </td>
     </tr>

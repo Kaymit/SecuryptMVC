@@ -48,6 +48,15 @@ namespace SecuryptMVC.Controllers
             //async execute query
             List<EncryptedItem> items = await queryPermitted.ToListAsync();
 
+            foreach(EncryptedItem item in items)
+            {
+                item.OwnerEmail = System.Web.HttpContext.Current.
+                GetOwinContext().
+                GetUserManager<ApplicationUserManager>().
+                FindById(item.OwnerID).
+                UserName;
+            }
+
             return View(items);
         }
 
@@ -95,11 +104,17 @@ namespace SecuryptMVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             EncryptedItem encryptedItem = await db.EncryptedItems.FindAsync(id);
-
             if (encryptedItem == null)
             {
                 return HttpNotFound();
             }
+
+            //lookup owner's email and add to model before returning it
+            encryptedItem.OwnerEmail = System.Web.HttpContext.Current.
+                GetOwinContext().
+                GetUserManager<ApplicationUserManager>().
+                FindById(encryptedItem.OwnerID).
+                UserName;
             return View(encryptedItem);
         }
 
@@ -115,6 +130,12 @@ namespace SecuryptMVC.Controllers
             {
                 return HttpNotFound();
             }
+            //lookup owner's email and add to model before returning it
+            encryptedItem.OwnerEmail = System.Web.HttpContext.Current.
+                GetOwinContext().
+                GetUserManager<ApplicationUserManager>().
+                FindById(encryptedItem.OwnerID).
+                UserName;
             return View(encryptedItem);
         }
 
@@ -125,14 +146,14 @@ namespace SecuryptMVC.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Name,IsPrivate")] EncryptedItem encryptedItem)
+        public async Task<ActionResult> Edit(EncryptedItem encryptedItem)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(encryptedItem).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
-            }
+            } else 
             return View(encryptedItem);
         }
 
@@ -156,6 +177,7 @@ namespace SecuryptMVC.Controllers
             }
 
             if (encryptedItem == null) { return HttpNotFound(); }
+
 
             PermittedUsersViewModel view = new PermittedUsersViewModel
             {
@@ -191,8 +213,8 @@ namespace SecuryptMVC.Controllers
                 return View("Error");
             }
 
+            //get the current UserManager to enable User query
             var userManager = Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
             try
             {
                 var userQuery = (from user in userManager.Users
@@ -200,6 +222,12 @@ namespace SecuryptMVC.Controllers
                                  select user).Single();
 
                 string userIDToAdd = userQuery.Id;
+
+                if (encryptedItem.PermittedUserIDs.Contains(userIDToAdd))
+                {
+                    ViewBag.errorMessage = "User already has permission";
+                    return View("Error");
+                }
 
                 encryptedItem.PermittedUserIDs.Add(userIDToAdd);
                 await db.SaveChangesAsync();

@@ -9,6 +9,7 @@ using Microsoft.Owin.Security;
 using SecuryptMVC.Models;
 using SendGrid.Helpers.Mail;
 using SendGrid;
+using System.Security.Principal;
 
 namespace SecuryptMVC
 {

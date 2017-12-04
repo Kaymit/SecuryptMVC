@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -20,12 +21,20 @@ namespace SecuryptMVC.Models
         public string           OwnerID { get; set; }
 
         /// <summary>
+        /// Used to display owner's email without storing it in database
+        /// </summary>
+        [NotMapped]
+        [Display(Name = "Email")]
+        public string           OwnerEmail { get; set; }
+
+
+        /// <summary>
         /// List of UserIDs with permission to decrypt and download item
         /// </summary>
         private List<String> _PermittedUserIDs { get; set; }
 
         /// <summary>
-        /// Workaround for lack of List<string> support in EF
+        /// Workaround property for lack of List<string> support in EF
         /// https://stackoverflow.com/questions/20711986/entity-framework-code-first-cant-store-liststring
         /// </summary>
         public List<string> PermittedUserIDs
@@ -52,12 +61,45 @@ namespace SecuryptMVC.Models
 		/// Filename available for searching
 		/// </summary>
         [Required]
+        [Display(Name = "Name")]
         public string	        Name			{ get; set; }
 
 		/// <summary>
-		/// File 
+		/// File system storage path
 		/// </summary>
         [Required]
         public string	        StorageLocation { get; set; }
+
+        [MaxLength(500)]
+        [Display(Name = "Description of Item")]
+        public string           Description     { get; set; }
+    }
+
+    /// <summary>
+    /// ViewModel used to display Users permitted to access a file
+    /// </summary>
+    public class PermittedUsersViewModel
+    {
+        public int ItemID                       { get; set; }
+        public string UserIDToAdd               { get; set; }
+        public List<String> PermittedUserIDs    { get; set; }
+        public List<String> PermittedUserEmails { get; set; }
+    }
+
+    public class EditViewModel
+    {
+        public int ItemID { get; set; }
+        public string Name { get; set; }
+        public string StorageLocation { get; set; }
+        public string OwnerID { get; set; }
+        public bool IsPrivate { get; set; }
+        public string Description { get; set; }
+    }
+
+    public class EditableItemPropertiesViewModel
+    {
+        public int ItemID { get; set; }
+        public bool IsPrivate { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -92,6 +92,15 @@ namespace SecuryptMVC.Controllers
                                                        select item;
 
             List<EncryptedItem> items = await queryOwned.ToListAsync();
+            foreach(EncryptedItem item in items)
+            {
+                item.OwnerEmail = System.Web.HttpContext.Current.
+                GetOwinContext().
+                GetUserManager<ApplicationUserManager>().
+                FindById(item.OwnerID).
+                UserName;
+            }
+
             UserOwnedItemsViewModel model = new UserOwnedItemsViewModel()
             {
                 UserID = userID,

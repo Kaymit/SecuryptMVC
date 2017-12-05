@@ -1,8 +1,12 @@
 ﻿<li>
-    @Html.ActionLink("English", "ChangeCulture", "Home",
-    new { lang = "en", returnUrl = this.Request.RawUrl }, null)
+    <a href="@Url.Action("ChangeCulture", "Language", new { lang = "en" })">Eng</a>
 </li>
 <li>
-@Html.ActionLink("German", "ChangeCulture", "Home",
-    new { lang = "de", returnUrl = this.Request.RawUrl }, null)
+    <a href="@Url.Action("ChangeCulture", "Language", new { lang = "de" })">Ger</a>
+</li>
+<li>
+    <a href="@Url.Action("ChangeCulture", "Language", new { lang = "sv" })">Swe</a>
+</li>
+<li>
+    <a href="@Url.Action("ChangeCulture", "Language", new { lang = "no" })">Nok</a>
 </li>

@@ -117,97 +117,133 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BrowseFiles" xml:space="preserve">
-    <value>Dateien</value>
-  </data>
-  <data name="DecryptH2" xml:space="preserve">
-    <value>Entschlüsseln</value>
-  </data>
-  <data name="DecryptHome_btn" xml:space="preserve">
-    <value>Entschlüsselung starten</value>
-  </data>
-  <data name="Decrypt_desc" xml:space="preserve">
-    <value>Eine autorisierte Partei ist jedoch in der Lage, den Chiffretext unter Verwendung eines Entschlüsselungsalgorithmus zu decodieren, der normalerweise einen geheimen Entschlüsselungsschlüssel erfordert.
-             auf die Gegner keinen Zugriff haben. Aus technischen Gründen benötigt ein Verschlüsselungsschema normalerweise einen Schlüsselerzeugungsalgorithmus, um Schlüssel zufällig zu erzeugen.</value>
-  </data>
-  <data name="DragArea" xml:space="preserve">
-    <value>Ziehe deine Dateien per Drag &amp; Drop hier</value>
-  </data>
-  <data name="DragDropH2" xml:space="preserve">
-    <value>Drag &amp; Drop Datei-Upload</value>
-  </data>
-  <data name="EncryptH2" xml:space="preserve">
-    <value>Verschlüsseln</value>
-  </data>
-  <data name="EncryptHome_btn" xml:space="preserve">
-    <value>Verschlüsseln starten</value>
-  </data>
-  <data name="EncryptUpload_btn" xml:space="preserve">
-    <value>Verschlüsseln</value>
-  </data>
-  <data name="Encrypt_desc" xml:space="preserve">
-    <value>Verschlüsselung ist in der Kryptographie der Prozess der Verschlüsselung einer Nachricht oder Information so, dass nur autorisierte
-            Parteien können darauf zugreifen. Die Verschlüsselung verhindert selbst keine Interferenz, verweigert jedoch den verständlichen Inhalt einem möglichen Abfangjäger.
-            In einem Verschlüsselungsschema wird die beabsichtigte Information oder Nachricht, die als Klartext bezeichnet wird, unter Verwendung einer Verschlüsselung verschlüsselt.
-            Algorithmus - ein verschlüsselter Chiffretext, der nur gelesen werden kann, wenn er entschlüsselt wird.</value>
-  </data>
-  <data name="HowStartH2" xml:space="preserve">
-    <value>Wie man anfängt</value>
-  </data>
-  <data name="Jumbotron" xml:space="preserve">
-    <value>Mit Securypt können Sie Ihre Dateien verschlüsseln und entschlüsseln. Dateien können lokal gespeichert oder auf einem Server gespeichert werden. Erstellen Sie ein Konto für einen öffentlichen Schlüssel</value>
-  </data>
-  <data name="Jumbo_btn" xml:space="preserve">
-    <value>Loslegen</value>
-  </data>
-  <data name="Tutorial_pt1" xml:space="preserve">
-    <value>Registrieren Sie sich zunächst für ein Konto, um Ihren öffentlichen Schlüssel zu generieren. Bewahren Sie dieses irgendwo auf, wo Sie es nicht verlieren werden.</value>
-  </data>
-  <data name="Tutorial_pt2" xml:space="preserve">
-    <value>Klicken Sie zum Starten auf die Registerkarte "Hochladen". Ziehen Sie Dateien von Ihrem Computer in den Upload-Bereich und legen Sie sie dort ab. Sobald alle Ihre Dateien
-             Klicken Sie auf "Verschlüsseln", um Ihre Dateien zu verschlüsseln. Danach werden Ihre verschlüsselten Dateien lokal gespeichert
-             auf Ihrem Computer oder Sie können wählen, sie auf einem Server zu speichern.</value>
-  </data>
-  <data name="Tutorial_pt3" xml:space="preserve">
-    <value>Die Entschlüsselung Ihrer Dateien ist genauso einfach. Ziehen Sie Ihre verschlüsselten Dateien per Drag &amp; Drop oder laden Sie sie hoch, um sie zu entschlüsseln.</value>
-  </data>
-  <data name="UploadedFilesH2" xml:space="preserve">
-    <value>Hochgeladene Dateien</value>
-  </data>
-  <data name="Upload_alt" xml:space="preserve">
-    <value>Oder laden Sie Ihre Dateien hier hoch</value>
-  </data>
-  <data name="Wikipedia" xml:space="preserve">
-    <value>Die freie Enzyklopädie</value>
-  </data>
-  <data name="Contact" xml:space="preserve">
-    <value>Warum möchten Sie uns kontaktieren?</value>
-  </data>
   <data name="About_p1" xml:space="preserve">
-    <value>In der download-Seite Sie kannen sehen, </value>
+    <value>På nedladdningssidan kan du visa, redigera och hantera dina filer.</value>
   </data>
   <data name="About_p2" xml:space="preserve">
-    <value>Jetz, Seinen allen Datei-Upload sind privaten, </value>
+    <value>Inledningsvis är var och en av dina uppladdade filer private, vilket innebär att endast du kan visa dem. Om du önskar att ändra detta, klicka på “Redigera”-knappen och avmarkera  den privata rutan.</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Varför skulle du vilja kontakta oss?</value>
+  </data>
+  <data name="DecryptH2" xml:space="preserve">
+    <value>Dekryptera</value>
+  </data>
+  <data name="DecryptHome_btn" xml:space="preserve">
+    <value>Starta Dekryptera</value>
+  </data>
+  <data name="Decrypt_desc" xml:space="preserve">
+    <value>En behörig part har möjlighet att avkoda chiffertexten genom att använda en dekrypteringsalgoritm, som vanligtvis kräver en hemlig dekrypteringsnyckel, vilken motparten inte har åtkomst till. Av tekniska skäl kräver ett krypteringsschema vanligtvis en nyckel-genererande algoritm som slumpmässigt producerar nycklar.</value>
+  </data>
+  <data name="DragArea" xml:space="preserve">
+    <value>Drag och släpp dina filer här.</value>
+  </data>
+  <data name="DragDropH2" xml:space="preserve">
+    <value>Drag och släpp filuppladning.</value>
+  </data>
+  <data name="EncryptH2" xml:space="preserve">
+    <value>Kryptera</value>
+  </data>
+  <data name="EncryptHome_btn" xml:space="preserve">
+    <value>Starta kryptering!</value>
+  </data>
+  <data name="EncryptUpload_btn" xml:space="preserve">
+    <value>Kryptera</value>
+  </data>
+  <data name="Encrypt_desc" xml:space="preserve">
+    <value>I kryptografi är kryptering processen för att dekryptera ett meddelande eller information så att endast behöriga parter kan få åtkomst. Kryptering som sådan förhindrar inte otillbörligt ingripande men gör så att angriparen inte kan tyda innehållet. I ett krypteringsschema är den tänkta informationen eller det tänkta meddelandet, vilket benämns klartext, krypterat med hjälp av en krypteringsalgoritm – ett chiffer – som genererar chiffertext som endast kan utläsas efter dekryptering.</value>
+  </data>
+  <data name="ForgotViewModel_displayEmail" xml:space="preserve">
+    <value>E-post</value>
+  </data>
+  <data name="HowStartH2" xml:space="preserve">
+    <value>Hur man börjar</value>
+  </data>
+  <data name="Items_create" xml:space="preserve">
+    <value>Skapa</value>
+  </data>
+  <data name="Items_delete" xml:space="preserve">
+    <value>Radera</value>
+  </data>
+  <data name="Items_details" xml:space="preserve">
+    <value>Detaljer</value>
+  </data>
+  <data name="Items_edit" xml:space="preserve">
+    <value>Redigera</value>
+  </data>
+  <data name="Items_name" xml:space="preserve">
+    <value>Namn</value>
+  </data>
+  <data name="Items_publicKey" xml:space="preserve">
+    <value>Offentlig nyckel</value>
+  </data>
+  <data name="Items_storageLoc" xml:space="preserve">
+    <value>Lagringsplats</value>
+  </data>
+  <data name="Jumbotron" xml:space="preserve">
+    <value>Securypt tillåter dig att kryptera och dekryptera dina filer. Filer kan sparas lokalt eller lagras på en sever. Skapa ett konto för en offentlig nyckel.</value>
+  </data>
+  <data name="Jumbo_btn" xml:space="preserve">
+    <value>Komma igång</value>
+  </data>
+  <data name="Managae_changePassActLink" xml:space="preserve">
+    <value>Ändra ditt lösenord</value>
+  </data>
+  <data name="ManageH4" xml:space="preserve">
+    <value>Ändra dina kontoinställningar</value>
+  </data>
+  <data name="Manage_createActLink" xml:space="preserve">
+    <value>Skapa</value>
+  </data>
+  <data name="Manage_manageActLink" xml:space="preserve">
+    <value>Hantera</value>
+  </data>
+  <data name="Manage_publicKey" xml:space="preserve">
+    <value>Offentlig nyckel</value>
+  </data>
+  <data name="Shared_greeting" xml:space="preserve">
+    <value>Hej</value>
+  </data>
+  <data name="Tutorial_p3" xml:space="preserve">
+    <value>Att dekryptera dina filer är lika enkelt. Drag och släpp eller ladda upp dina krypterade filer för att dekryptera.</value>
+  </data>
+  <data name="Tutorial_pt1" xml:space="preserve">
+    <value>För att komma igång, registrera ett konto för att generera din offentliga nyckel. Spara denna på ett säkert ställe där du inte förlorar den.</value>
+  </data>
+  <data name="Tutorial_pt2" xml:space="preserve">
+    <value>Klicka på “Ladda upp”-knappen för att starta. Drag och släpp eller ladda upp filer från din dator till uppladdningsplatsen. När alla dina filer har valts, klicka på “Kryptera” för att kryptera dina filer. Sedan kommer dina krypterade filer att sparas lokalt på din dator, alternativt så kan du välja att spara dem på en server.</value>
+  </data>
+  <data name="UploadedFilesH2" xml:space="preserve">
+    <value>Ladda upp filer</value>
+  </data>
+  <data name="Upload_alt" xml:space="preserve">
+    <value>Eller ladda upp dina filer här</value>
+  </data>
+  <data name="Upload_success" xml:space="preserve">
+    <value>Fil(er) framgångsrikt uppladdad(e)</value>
+  </data>
+  <data name="Wikipedia" xml:space="preserve">
+    <value>Från Wikipedia, den fria encyklopedin</value>
   </data>
   <data name="About_link" xml:space="preserve">
-    <value>Über</value>
+    <value>Om</value>
   </data>
   <data name="Contact_link" xml:space="preserve">
-    <value>Kontakt</value>
+    <value>Kontakta</value>
   </data>
   <data name="Download_link" xml:space="preserve">
-    <value>Herunterladen</value>
+    <value>Ladda ner</value>
   </data>
   <data name="Home_link" xml:space="preserve">
-    <value>Start</value>
+    <value>Hemsida</value>
   </data>
   <data name="Upload_link" xml:space="preserve">
-    <value>Hochladen</value>
+    <value>Ladda upp</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>Einloggen</value>
+    <value>Logga in</value>
   </data>
   <data name="Register" xml:space="preserve">
-    <value>Registrieren</value>
+    <value>Registrera</value>
   </data>
 </root>

@@ -18,57 +18,24 @@ namespace SecuryptMVC {
         }
 
         /// <summary>
-        /// Changes the Resx file to the selected language chosen
+        /// Begins the Cookie request. Sets it to the language selected by the user otherwise begins as English.
         /// Author: Michael
-        /// Date: 2017-11-25
-        /// Based on: http://adamyan.blogspot.ca/2010/02/aspnet-mvc-2-localization-complete.html
+        /// Date: 2017-12-04
+        /// Based on: https://www.youtube.com/watch?v=oGeAYd3idBc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-
-        protected void Application_AcquireRequestState(object sender, EventArgs e) {
-            //It's important to check whether session object is ready
-            if (HttpContext.Current.Session != null) {
-                CultureInfo ci = (CultureInfo)this.Session["Culture"];
-                string langName;
-                //Checking first if there is no value in session 
-                //and set default language 
-                //this can happen for first user's request
-                if (ci == null) {
-                    //Sets default culture to english invariant
-                    langName = "en";
-
-                    //Try to get values from Accept lang HTTP header
-                } else if (HttpContext.Current.Request.UserLanguages != null && HttpContext.Current.Request.UserLanguages.Length != 0) {
-                    //Gets accepted 
-                    langName = HttpContext.Current.Request.UserLanguages[0].Substring(0, 2);
-                    ci = new CultureInfo(langName);
-                    this.Session["Culture"] = ci;
-
-                    //Finally setting culture for each request
-                    Thread.CurrentThread.CurrentUICulture = ci;
-                    Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(ci.Name);
-                }
+        protected void Application_BeginRequest(object sender, EventArgs e) {
+            HttpCookie cookie = HttpContext.Current.Request.Cookies["Language"];
+            if (cookie != null && cookie.Value != null) {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo(cookie.Value);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(cookie.Value);
+            } else {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en");
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
             }
 
         }
-        /*
-        protected void Application_AcquireRequestState(object sender, EventArgs e)
 
-     {
-
-       //Create culture info object 
-
-       CultureInfo ci = new CultureInfo("de");
-
-     
-
-       System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
-
-       System.Threading.Thread.CurrentThread.CurrentCulture = 
-
-      CultureInfo.CreateSpecificCulture(ci.Name);
-
-     }*/
     }
 }

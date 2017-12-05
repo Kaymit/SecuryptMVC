@@ -57,6 +57,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="MyStrings.no.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyStrings.no.resx</DependentUpon>
+    </Compile>
+    <Compile Include="MyStrings.sv.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyStrings.sv.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,14 +75,25 @@
       <LastGenOutput>MyStrings.de.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Securypt.Resources</CustomToolNamespace>
     </EmbeddedResource>
+    <EmbeddedResource Include="MyStrings.no.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MyStrings.no.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MyStrings.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Securypt.Resources</CustomToolNamespace>
     </EmbeddedResource>
+    <EmbeddedResource Include="MyStrings.sv.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MyStrings.sv.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Securypt.Resources</CustomToolNamespace>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

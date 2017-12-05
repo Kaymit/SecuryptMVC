@@ -160,13 +160,13 @@
     <value>Get started</value>
   </data>
   <data name="Tutorial_pt1" xml:space="preserve">
-    <value>To get started, register for an account to generate your public key. Keep this saved somewhere where you won't lose it.</value>
+    <value>To get started, register for an account and begin uploading and downloading files. Search friends or colleagues by email to share your files with them.</value>
   </data>
   <data name="Tutorial_pt2" xml:space="preserve">
     <value>Click on the 'Upload' tab to start. Drag and drop or upload files from your computer onto the upload area. Once all your files have been selected, click "Encrypt" to encrypt your files. After, your encrypted files will be stored locally on your computer or you can choose to store them on a server.</value>
   </data>
   <data name="Tutorial_pt3" xml:space="preserve">
-    <value>Decrypting your files is just as easy. Drag and drop or upload your encrypted files for decryption.</value>
+    <value>Our encryption server will decrypt your files and serve them to you over the widespread HTTPS protocol, keeping your data secure.</value>
   </data>
   <data name="UploadedFilesH2" xml:space="preserve">
     <value>Uploaded Files</value>
@@ -178,7 +178,7 @@
     <value>From Wikipedia, the free encyclopedia</value>
   </data>
   <data name="Contact" xml:space="preserve">
-    <value>Why would you want to contact us?</value>
+    <value>Please contact the administrator for any questions or concerns.</value>
   </data>
   <data name="Items_create" xml:space="preserve">
     <value>Create</value>

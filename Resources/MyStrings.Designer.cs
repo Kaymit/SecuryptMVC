@@ -19,7 +19,7 @@ namespace Securypt.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class MyStrings {
@@ -97,7 +97,7 @@ namespace Securypt.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Why would you want to contact us?.
+        ///   Looks up a localized string similar to Please contact the administrator for any questions or concerns..
         /// </summary>
         public static string Contact {
             get {
@@ -385,7 +385,7 @@ namespace Securypt.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To get started, register for an account to generate your public key. Keep this saved somewhere where you won&apos;t lose it..
+        ///   Looks up a localized string similar to To get started, register for an account and begin uploading and downloading files. Search friends or colleagues by email to share your files with them..
         /// </summary>
         public static string Tutorial_pt1 {
             get {
@@ -403,7 +403,7 @@ namespace Securypt.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Decrypting your files is just as easy. Drag and drop or upload your encrypted files for decryption..
+        ///   Looks up a localized string similar to Our encryption server will decrypt your files and serve them to you over the widespread HTTPS protocol, keeping your data secure..
         /// </summary>
         public static string Tutorial_pt3 {
             get {

@@ -618,3 +618,5 @@ C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\b
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.csprojResolveAssemblyReference.cache
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.dll
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.pdb
+C:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\no\Resources.resources.dll
+C:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\sv\Resources.resources.dll

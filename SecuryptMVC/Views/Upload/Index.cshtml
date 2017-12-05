@@ -7,9 +7,9 @@
     ViewBag.Title = "Index";
 }
 <body>
-    <h2>@MyStrings.DragDropH2</h2>
+    <h2 style="margin-left:auto; margin-right:auto">@MyStrings.DragDropH2</h2>
     <div class="row">
-        <div class="col-sm-2" id="dropArea">
+        <div class="span" id="dropArea">
             @MyStrings.DragArea
         </div>
     </div>
@@ -71,12 +71,15 @@
     #dropArea {
         background: #b5b5b5;
         border: black dashed 1px;
-        width: 300px;
+        width: 90%;
         height: 300px;
         text-align: center;
         color: #fff;
         padding-top: 12px;
         line-height: 300px;
+		float:none;
+		margin-left:auto;
+		margin-right: auto;
     }
 
     .active-drop {

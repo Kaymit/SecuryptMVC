@@ -27,7 +27,6 @@ namespace SecuryptMVC.Models
         [Display(Name = "Email")]
         public string           OwnerEmail { get; set; }
 
-
         /// <summary>
         /// List of UserIDs with permission to decrypt and download item
         /// </summary>
@@ -86,6 +85,9 @@ namespace SecuryptMVC.Models
         public List<String> PermittedUserEmails { get; set; }
     }
 
+    /// <summary>
+    /// ViewModel used to display properties while editing
+    /// </summary>
     public class EditViewModel
     {
         public int ItemID { get; set; }
@@ -96,6 +98,9 @@ namespace SecuryptMVC.Models
         public string Description { get; set; }
     }
 
+    /// <summary>
+    /// ViewModel used to submit editable properties
+    /// </summary>
     public class EditableItemPropertiesViewModel
     {
         public int ItemID { get; set; }

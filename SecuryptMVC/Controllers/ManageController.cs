@@ -13,6 +13,9 @@ using System.Data.Entity;
 
 namespace SecuryptMVC.Controllers
 {
+    /// <summary>
+    /// Contains actions for managing user accounts like checking user owned items and changing password
+    /// </summary>
     [Authorize]
     public class ManageController : Controller
     {

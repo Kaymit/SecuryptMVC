@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
+/// <summary>
+/// Models used to manage an account after it already exists
+/// </summary>
 namespace SecuryptMVC.Models
 {
     public class IndexViewModel

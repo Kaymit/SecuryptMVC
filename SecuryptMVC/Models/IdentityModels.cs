@@ -8,7 +8,9 @@ using Microsoft.Owin;
 
 namespace SecuryptMVC.Models
 {
-    //add profile data for the user by adding properties
+    /// <summary>
+    /// Application extension of IdentityUser
+    /// </summary>
     public class ApplicationUser : IdentityUser
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -36,6 +38,9 @@ namespace SecuryptMVC.Models
         }
     }
 
+    /// <summary>
+    /// Database context for the ASP.NET Identity tables
+    /// </summary>
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()

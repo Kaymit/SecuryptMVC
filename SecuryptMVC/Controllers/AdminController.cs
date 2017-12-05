@@ -16,7 +16,11 @@ namespace SecuryptMVC.Controllers
 		private ApplicationRoleManager _roleManager;
 		private ApplicationDbContext dbID = new ApplicationDbContext();
 
-		// GET: Admin
+		/// <summary>
+        /// GET: Returns a list of all users to admin users
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <returns></returns>
 		[Authorize(Roles = "Administrator")]
 		public async Task<ActionResult> Index(string searchString)
         {
@@ -31,20 +35,11 @@ namespace SecuryptMVC.Controllers
 			return View("~/Views/Admin/Index.cshtml", users);
         }
 
-        // GET: Admin/Details/5
-        public ActionResult ListUsers(int id)
-        {
-            return View();
-        }
-
-		/*
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-		*/
-
-        // POST: Admin/Delete/5
+        /// <summary>
+        /// POST: Attempts to delete a user via the UserManager
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
 		[Authorize(Roles = "Administrator")]
         public async Task<ActionResult> Delete(string id)
@@ -70,6 +65,11 @@ namespace SecuryptMVC.Controllers
             }
         }
 
+        /// <summary>
+        /// Helper method to asyncronously find User and Roles to delete
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
 		private async Task DeleteUser(ApplicationUser user)
 		{
 			// If we could not find the user, throw an exception

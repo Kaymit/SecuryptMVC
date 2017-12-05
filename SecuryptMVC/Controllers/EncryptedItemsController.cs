@@ -96,7 +96,11 @@ namespace SecuryptMVC.Controllers
             return File(decryptedFileStream, contentType, encryptedItem.Name);      //construct and return filestream to client
         }
 
-        // GET: EncryptedItems/Details/5
+        /// <summary>
+        /// GET: Returns a list of details about the Item
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -118,7 +122,11 @@ namespace SecuryptMVC.Controllers
             return View(encryptedItem);
         }
 
-        // GET: EncryptedItems/Edit/5
+        /// <summary>
+        /// GET: Returns an edit view of the item
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -140,7 +148,7 @@ namespace SecuryptMVC.Controllers
         }
 
         /// <summary>
-        /// Edit EncryptedItem Action. Bound only to properties which are possible to edit
+        /// POST: Edit EncryptedItem
         /// </summary>
         /// <param name="encryptedItem"></param>
         /// <returns></returns>
@@ -273,7 +281,11 @@ namespace SecuryptMVC.Controllers
             return View(view);
         }
 
-        // GET: EncryptedItems/Delete/5
+        /// <summary>
+        /// GET: returns a view with the deletable item
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -295,7 +307,11 @@ namespace SecuryptMVC.Controllers
             return View(encryptedItem);
         }
 
-        // POST: EncryptedItems/Delete/5
+        /// <summary>
+        /// POST: attempts to delete an item
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

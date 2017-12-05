@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+/// <summary>
+/// Models used for fundamental account interactions
+/// </summary>
 namespace SecuryptMVC.Models
 {
     public class ExternalLoginConfirmationViewModel

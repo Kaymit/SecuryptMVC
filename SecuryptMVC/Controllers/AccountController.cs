@@ -10,7 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SecuryptMVC.Models;
 using SecuryptMVC.Utility;
-
+using System.Configuration;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 /// https://docs.microsoft.com/en-us/aspnet/mvc/overview/security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset
 namespace SecuryptMVC.Controllers
@@ -20,6 +21,7 @@ namespace SecuryptMVC.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+		private ApplicationRoleManager _roleManager;
 
         public AccountController()
         {
@@ -31,7 +33,19 @@ namespace SecuryptMVC.Controllers
             SignInManager = signInManager;
         }
 
-        public ApplicationSignInManager SignInManager
+		public ApplicationRoleManager RoleManager
+		{
+			get
+			{
+				return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
+			}
+			private set
+			{
+				_roleManager = value;
+			}
+		}
+
+		public ApplicationSignInManager SignInManager
         {
             get
             {
@@ -59,6 +73,7 @@ namespace SecuryptMVC.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+			CreateAdminIfNeeded();
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -452,9 +467,44 @@ namespace SecuryptMVC.Controllers
             base.Dispose(disposing);
         }
 
-        #region Helpers
-        // Used for XSRF protection when adding external logins
-        private const string XsrfKey = "XsrfId";
+		#region private void CreateAdminIfNeeded()
+		/// <summary>
+		/// ApplicationRoleManager Helper for adding admin account if none exists
+		/// http://openlightgroup.com/Blog/TabId/58/PostId/189/UserRolesAdministration.aspx
+		/// </summary>
+		private void CreateAdminIfNeeded()
+		{
+			// Get Admin Account
+			string AdminUserName = ConfigurationManager.AppSettings["AdminUserName"];
+			string AdminPassword = ConfigurationManager.AppSettings["AdminPassword"];
+			// See if Admin exists
+			var objAdminUser = UserManager.FindByEmail(AdminUserName);
+			if (objAdminUser == null)
+			{
+				//See if the Admin role exists
+				if (!RoleManager.RoleExists("Administrator"))
+				{
+					// Create the Admin Role (if needed)
+					IdentityRole objAdminRole = new IdentityRole("Administrator");
+					RoleManager.Create(objAdminRole);
+				}
+				// Create Admin user
+				var objNewAdminUser = new ApplicationUser
+				{
+					UserName = AdminUserName,
+					Email = AdminUserName,
+					EmailConfirmed = true //no email confirmation on auto-admin account
+				};
+				var AdminUserCreateResult = UserManager.Create(objNewAdminUser, AdminPassword);
+				// Put user in Admin role
+				UserManager.AddToRole(objNewAdminUser.Id, "Administrator");
+			}
+		}
+		#endregion
+
+		#region Helpers
+		// Used for XSRF protection when adding external logins
+		private const string XsrfKey = "XsrfId";
 
         private IAuthenticationManager AuthenticationManager
         {

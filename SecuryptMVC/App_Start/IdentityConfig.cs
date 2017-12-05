@@ -131,4 +131,20 @@ namespace SecuryptMVC
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
     }
+
+	/// <summary>
+	/// Template ApplicationRoleManager not included in MS release
+	/// https://stackoverflow.com/questions/25417024/no-applicationrolemanager-class-in-my-mvc-5-template
+	/// </summary>
+	public class ApplicationRoleManager : RoleManager<IdentityRole>
+	{
+		public ApplicationRoleManager(IRoleStore<IdentityRole, string> roleStore)
+		: base(roleStore) { }
+
+		public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
+		{
+			var manager = new ApplicationRoleManager(new RoleStore<IdentityRole>(context.Get<ApplicationDbContext>()));
+			return manager;
+		}
+	}
 }

@@ -31,6 +31,10 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Download", "Index", "EncryptedItems")</li>
                     <li>@Html.ActionLink("Upload", "Index", "Upload")</li>
+					@if (User.IsInRole("Administrator"))
+					{
+						<li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+					}
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

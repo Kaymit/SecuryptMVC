@@ -14,6 +14,12 @@ namespace SecuryptMVC
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
-        }
+
+			routes.MapRoute(
+				name: "Delete",
+				url: "Admin/Delete/{id}",
+				defaults: new { controller = "Admin", action = "Delete", id = UrlParameter.Optional }
+			);
+		}
     }
 }

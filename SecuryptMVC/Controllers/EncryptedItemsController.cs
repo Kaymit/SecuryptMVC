@@ -134,7 +134,13 @@ namespace SecuryptMVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             EncryptedItem encryptedItem = await db.EncryptedItems.FindAsync(id);
-            if (encryptedItem == null)
+			string userID = User.Identity.GetUserId();
+			if (encryptedItem.OwnerID != userID)
+			{
+				ViewBag.errorMessage = "Only the owner of this file may edit this file";
+				return View("Error");
+			}
+			if (encryptedItem == null)
             {
                 return HttpNotFound();
             }
@@ -156,7 +162,13 @@ namespace SecuryptMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(EncryptedItem encryptedItem)
         {
-            if (ModelState.IsValid)
+			string userID = User.Identity.GetUserId();
+			if (encryptedItem.OwnerID != userID)
+			{
+				ViewBag.errorMessage = "Only the owner of this file may edit this file";
+				return View("Error");
+			}
+			if (ModelState.IsValid)
             {
                 db.Entry(encryptedItem).State = EntityState.Modified;
                 await db.SaveChangesAsync();
@@ -180,7 +192,7 @@ namespace SecuryptMVC.Controllers
             //if you aren't the owner, you can't access list of permitted users
             if (encryptedItem.OwnerID != userID)
             {
-                ViewBag.errorMessage = "Only the owner of this file may change the permissions";
+                ViewBag.errorMessage = "Only the owner of this file may view or change its access";
                 return View("Error");
             }
 

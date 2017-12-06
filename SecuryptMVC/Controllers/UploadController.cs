@@ -26,6 +26,7 @@ namespace SecuryptMVC.Controllers
         FileContext db = new FileContext();
 
         // GET: Upload
+		[Authorize]
         public ActionResult Index()
         {
             return View("~/Views/Upload/Index.cshtml");

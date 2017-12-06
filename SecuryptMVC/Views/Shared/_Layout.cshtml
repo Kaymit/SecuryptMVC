@@ -30,7 +30,11 @@
                     <li>@Html.ActionLink(MyStrings.About_link, "About", "Home")</li>
                     <li>@Html.ActionLink(MyStrings.Contact_link, "Contact", "Home")</li>
                     <li>@Html.ActionLink(MyStrings.Download_link, "Index", "EncryptedItems")</li>
-                    <li>@Html.ActionLink(MyStrings.Upload_link, "Index", "Upload")</li>
+                    <li></li>
+					@if (User.Identity.IsAuthenticated)
+					{
+						<li>@Html.ActionLink(MyStrings.Upload_link, "Index", "Upload")</li>
+					}
                     @if (User.IsInRole("Administrator"))
                     {
                         <li>@Html.ActionLink("Admin", "Index", "Admin")</li>

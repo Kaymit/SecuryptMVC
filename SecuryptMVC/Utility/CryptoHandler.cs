@@ -13,6 +13,10 @@ namespace SecuryptMVC.Utility
     /// <summary>
     /// Utility class responsible for using the RSA and AES algorithms and related tasks
     /// </summary>
+    /// <author>
+    /// Kevin Mitchell 12/10/2017 - 4/12/2017
+    /// Michael O'Connell-Graf 15/10/2017
+    /// </author>
     public class CryptoHandler
     {
         internal string securyptKeyName = "Securypt";
@@ -59,7 +63,14 @@ namespace SecuryptMVC.Utility
         }
 
 
-        //example from https://docs.microsoft.com/en-us/dotnet/standard/security/walkthrough-creating-a-cryptographic-application
+        /// <summary>
+        /// Adapted from: https://docs.microsoft.com/en-us/dotnet/standard/security/walkthrough-creating-a-cryptographic-application
+        /// Encrypts a file with AES, encrypting the key with RSA and appending it to the beginning of the file
+        /// </summary>
+        /// <author>
+        /// Microsoft Tutorials
+        /// Kevin Mitchell 12/10/2017
+        /// </author>
         internal void EncryptFile(string inFile)
         {
             RijndaelManaged rjndl = new RijndaelManaged
@@ -145,7 +156,13 @@ namespace SecuryptMVC.Utility
             }
         }
 
-        //example from https://docs.microsoft.com/en-us/dotnet/standard/security/walkthrough-creating-a-cryptographic-application
+        /// <summary> 
+        /// https://docs.microsoft.com/en-us/dotnet/standard/security/walkthrough-creating-a-cryptographic-application
+        /// </summary>
+        /// <author>
+        /// Microsoft
+        /// Kevin Mitchell 12/10/2017
+        /// </author>
         internal MemoryStream DecryptFile(string inFileWithExtension)
         {
             // Get file extension from inFile string 
@@ -247,7 +264,9 @@ namespace SecuryptMVC.Utility
             return outStream;
         }
 
-        //https://stackoverflow.com/questions/9995839/how-to-make-random-string-of-numbers-and-letters-with-a-length-of-5
+        /// <summary>
+        /// Adapted from https://stackoverflow.com/questions/9995839/how-to-make-random-string-of-numbers-and-letters-with-a-length-of-5
+        /// </summary>
         public string RandomString(int length)
         {
             const string pool = "abcdefghijklmnopqrstuvwxyz0123456789";
@@ -263,14 +282,21 @@ namespace SecuryptMVC.Utility
             return builder.ToString();
         }
 
-        //simple function to return Public Key XML string
+        /// <summary>
+        /// Small function to return xml string of public key
+        /// </summary>
+        /// <author>
+        /// Kevin Mitchell
+        /// </author>
         public string PublicKeyToString()
         {
             return rsa.ToXmlString(false); //false returns only Public Key
         }
 
 
-        //https://docs.microsoft.com/en-us/dotnet/standard/security/how-to-store-asymmetric-keys-in-a-key-container
+        /// <summary>
+        /// Adapted from https://docs.microsoft.com/en-us/dotnet/standard/security/how-to-store-asymmetric-keys-in-a-key-container
+        /// </summary>
         internal static void DeleteKeyFromContainer(string ContainerName)
         {
             CspParameters cp = new CspParameters();
@@ -284,7 +310,9 @@ namespace SecuryptMVC.Utility
             Console.WriteLine("Key deleted.");
         }
 
-        //https://stackoverflow.com/questions/17640055/c-sharp-rsacryptoserviceprovider-how-to-check-if-a-key-already-exists-in-contai
+        /// <summary>
+        /// Adapted from https://stackoverflow.com/questions/17640055/c-sharp-rsacryptoserviceprovider-how-to-check-if-a-key-already-exists-in-contai
+        /// </summary>
         internal static bool doesKeyExist(string containerName)
         {
             var cspParams = new CspParameters

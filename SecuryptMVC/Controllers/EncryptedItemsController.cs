@@ -20,6 +20,16 @@ using Microsoft.AspNet.Identity.Owin;
 //https://support.microsoft.com/en-us/help/323246/how-to-upload-a-file-to-a-web-server-in-asp-net-by-using-visual-c--net
 namespace SecuryptMVC.Controllers
 {
+    /// <summary>
+    /// Encrypted Items Controller: the main controller that users can interface 
+    ///     with encrypted files through. All main functionality except create, which 
+    ///     is in UploadController
+    /// Scaffolded by MVC and Entity Framework
+    /// </summary>
+    /// <author>
+    /// Kevin Mitchell 16/11/2017 - 3/12/2017
+    /// Michael O'Connell-Graf 28/11/2017 - 30/11/2017
+    /// </author>
     public class EncryptedItemsController : Controller
     {
         /// <summary>
@@ -68,6 +78,9 @@ namespace SecuryptMVC.Controllers
         /// </summary>
         /// <param name="id">ID of EncryptedItem held in database</param>
         /// <returns>FileStreamResult with decrypted item, in correct file format</returns>
+        /// <author>
+        /// Kevin Mitchell 19/11/2017
+        /// </author>
         public FileStreamResult Download(int id)
         {
             //Register CryptoHandler and ensure keys are current
@@ -85,7 +98,7 @@ namespace SecuryptMVC.Controllers
 
             if (encryptedItem == null)
             {
-                //return HttpNotFound();
+                Response.Redirect("/EncryptedItem/Error");
             }
 
             //get byte stream of decrypted bytes, return a FileStreamResult with
@@ -110,7 +123,8 @@ namespace SecuryptMVC.Controllers
             EncryptedItem encryptedItem = await db.EncryptedItems.FindAsync(id);
             if (encryptedItem == null)
             {
-                return HttpNotFound();
+                ViewBag.errorMessage = "Only the owner of this file may edit this file";
+                return View("Error");
             }
 
             //lookup owner's email and add to model before returning it
@@ -126,7 +140,9 @@ namespace SecuryptMVC.Controllers
         /// GET: Returns an edit view of the item
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <author>
+        /// Kevin Mitchell 20/11/2017
+        /// </author>
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -157,7 +173,10 @@ namespace SecuryptMVC.Controllers
         /// POST: Edit EncryptedItem
         /// </summary>
         /// <param name="encryptedItem"></param>
-        /// <returns></returns>
+        /// <author>
+        /// Kevin Mitchell 20/11/2017 - 2/12/2017
+        /// Michael O'Connell-Graf 2-5/12/2017
+        /// </author>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(EncryptedItem encryptedItem)
@@ -180,8 +199,10 @@ namespace SecuryptMVC.Controllers
         /// <summary>
         /// returns list of users permitted to access this item
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">string id of user to edit</param>
+        /// <author>
+        /// Kevin Mitchell 28 - 30/11/2017
+        /// </author>
         [HttpGet]
         public async Task<ActionResult> PermittedUsers(int? id)
         {
@@ -212,7 +233,9 @@ namespace SecuryptMVC.Controllers
         /// POST: attempts to add a User to the list of permissions for this file
         /// </summary>
         /// <param name="email"></param>
-        /// <returns></returns>
+        /// <author>
+        /// Kevin Mitchell 28/11/2017
+        /// </author>
         [HttpPost]
         public async Task<ActionResult> AddPermission(AddPermissionViewModel model)
         {
@@ -271,8 +294,9 @@ namespace SecuryptMVC.Controllers
         /// <summary>
         /// GET: returns AddPermission view for correct item
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <author>
+        /// Kevin Mitchell 28/11/2017
+        /// </author>
         [HttpGet]
         public async Task<ActionResult> AddPermission(int id)
         {
@@ -296,8 +320,9 @@ namespace SecuryptMVC.Controllers
         /// <summary>
         /// GET: returns a view with the deletable item
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <author>
+        /// Kevin Mitchell 20/11/2017
+        /// </author>
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -322,8 +347,9 @@ namespace SecuryptMVC.Controllers
         /// <summary>
         /// POST: attempts to delete an item
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <author>
+        /// Kevin Mitchell 20/11/2017 - 5/12/2017
+        /// </author>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
@@ -333,6 +359,12 @@ namespace SecuryptMVC.Controllers
             db.EncryptedItems.Remove(encryptedItem);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Error()
+        {
+            ViewBag.errorMessage = "File not found: this is definitely not good";
+            return View("Error");
         }
 
         protected override void Dispose(bool disposing)

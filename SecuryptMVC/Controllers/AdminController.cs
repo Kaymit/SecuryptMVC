@@ -11,6 +11,13 @@ using System.Web.Mvc;
 
 namespace SecuryptMVC.Controllers
 {
+    /// <summary>
+    /// Some Administration funcationality included such as list users, search users, and delete user
+    /// </summary>
+    /// <author> 
+    /// Kevin Mitchell 29/11/2017
+    /// Michael O'Connel-Graf 4-9/12/2017
+    /// </author>
     public class AdminController : Controller
     {
         private ApplicationUserManager _userManager;

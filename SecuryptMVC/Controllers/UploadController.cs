@@ -20,6 +20,7 @@ namespace SecuryptMVC.Controllers
     /// <para>Author: Michael</para>
     /// Date: 2017-11-15
     /// <para>Based on: http://www.dotnetawesome.com/2017/02/drag-drop-file-upload-aspnet-mvc.html </para>
+    /// Kevin Mitchell 28/11/2017 - 3/12/2017
     /// </summary>
     public class UploadController : Controller
     {
@@ -32,7 +33,11 @@ namespace SecuryptMVC.Controllers
             return View("~/Views/Upload/Index.cshtml");
         }
 
-        // POST: Upload and Create
+        /// <summary>
+        /// Accepts HttpPostedFileBase array to save to database and file system
+        /// </summary>
+        /// <param name="files"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult UploadFiles(IEnumerable<HttpPostedFileBase> files)
         {
@@ -60,7 +65,7 @@ namespace SecuryptMVC.Controllers
                 
                 string storagePath = Path.Combine(Server.MapPath("~/UploadedFiles"), filePath);
 
-                //save and encrypt fiile
+                //encrypt and save file to storage path
                 file.SaveAs(storagePath);
                 ch.EncryptFile(storagePath);
 
@@ -78,19 +83,10 @@ namespace SecuryptMVC.Controllers
                     IsPrivate = true
                 };
 
+                //add new EncryptedItem to database
                 db.EncryptedItems.Add(item);
-                db.SaveChangesAsync(); //add new EncryptedItem to database
-                                       //TODO move to helper class?
-
-                /*
-                return RedirectToAction("Create", "EncryptedItemController", new {
-                    Name = fileName,
-                    PublicKey = publicKey,
-                    StorageLocation = storagePath
-                });
-                */
+                db.SaveChangesAsync(); 
             }
-            //TODO: replace this with a Create EncryptedItem view call?
             return Json("Error: file was not added to database");
         }
     }

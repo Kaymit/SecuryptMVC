@@ -8,8 +8,21 @@ using SecuryptMVC.Models;
 
 namespace SecuryptMVC
 {
+    /// <summary>
+    /// Partial startup class, companion to Startup.cs in root project directory
+    /// Responsible for authorization initialization
+    /// </summary>
+    /// <author>
+    /// Kevin Mitchell,
+    /// Template MVC code
+    /// 15/11/2017
+    /// Edited by: Kevin Mitchell 1-5/12/2017
+    /// </author>
     public partial class Startup
     {
+        /// <summary>
+        /// Template MVC code
+        /// </summary>
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request

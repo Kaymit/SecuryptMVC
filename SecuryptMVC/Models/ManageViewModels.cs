@@ -6,6 +6,9 @@ using Microsoft.Owin.Security;
 /// <summary>
 /// Models used to manage an account after it already exists
 /// </summary>
+/// <author>
+/// MVC Framework
+/// </author>
 namespace SecuryptMVC.Models
 {
     public class IndexViewModel

@@ -11,6 +11,10 @@ namespace SecuryptMVC.Models
     /// <summary>
     /// Application extension of IdentityUser
     /// </summary>
+    /// <author>
+    /// MVC Framework
+    /// Kevin Mitchell 15/11/2017 - 1/12/2017
+    /// </author>
     public class ApplicationUser : IdentityUser
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -39,8 +43,12 @@ namespace SecuryptMVC.Models
     }
 
     /// <summary>
-    /// Database context for the ASP.NET Identity tables
+    /// Database context for the ASP.NET Identity tables (aka users, roles, etc)
     /// </summary>
+    /// <author>
+    /// MVC Framework
+    /// Kevin Mitchell 1/12/2017
+    /// </author>
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()

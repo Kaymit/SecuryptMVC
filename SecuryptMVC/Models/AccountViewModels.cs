@@ -4,6 +4,10 @@ using System.ComponentModel.DataAnnotations;
 /// <summary>
 /// Models used for fundamental account interactions
 /// </summary>
+/// <author>
+/// MVC Framework
+/// Kevin Mitchell 15/11/2017
+/// </author>
 namespace SecuryptMVC.Models
 {
     public class ExternalLoginConfirmationViewModel

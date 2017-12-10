@@ -13,6 +13,13 @@ using System.Security.Principal;
 
 namespace SecuryptMVC
 {
+    /// <summary>
+    /// Email Registration service using SendGrid cloud email service
+    /// https://sendgrid.com/solutions/email-api/
+    /// </summary>
+    /// <author>
+    /// Kevin Mitchell 15/11/2017 - 2/12/2017
+    /// </author>
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
@@ -26,7 +33,9 @@ namespace SecuryptMVC
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
-        /// <references>https://docs.microsoft.com/en-us/aspnet/identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity</references>
+        /// <references
+        /// >https://docs.microsoft.com/en-us/aspnet/identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity
+        /// </references>
         private Task configSendGridasync(IdentityMessage message)
         {
             var apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY"); 
@@ -48,6 +57,9 @@ namespace SecuryptMVC
         }
     }
 
+    /// <summary>
+    /// Not implemented
+    /// </summary>
     public class SmsService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
@@ -57,7 +69,6 @@ namespace SecuryptMVC
         }
     }
 
-    // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
@@ -111,7 +122,6 @@ namespace SecuryptMVC
         }
     }
 
-    // Configure the application sign-in manager which is used in this application.
     public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
     {
         public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)

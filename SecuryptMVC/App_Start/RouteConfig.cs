@@ -3,6 +3,9 @@ using System.Web.Routing;
 
 namespace SecuryptMVC
 {
+    /// <summary>
+    /// Template MVC code
+    /// </summary>
     public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)
@@ -15,6 +18,7 @@ namespace SecuryptMVC
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
+            //add route for admin functionality
 			routes.MapRoute(
 				name: "Delete",
 				url: "Admin/Delete/{id}",

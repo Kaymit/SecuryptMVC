@@ -19,6 +19,11 @@ namespace SecuryptMVC.Controllers
     /// <summary>
     /// Controller for fundamental account actions like create, delete user
     /// </summary>
+    /// <author>
+    /// Template MVC code,
+    /// Kevin Mitchell (additions for email functionality & login changes)
+    /// 15/11/2017
+    /// </author>
     [Authorize]
     public class AccountController : Controller
     {
@@ -452,7 +457,8 @@ namespace SecuryptMVC.Controllers
 		#region private void CreateAdminIfNeeded()
 		/// <summary>
 		/// ApplicationRoleManager Helper for adding admin account if none exists
-		/// http://openlightgroup.com/Blog/TabId/58/PostId/189/UserRolesAdministration.aspx
+		/// plugged directly in from http://openlightgroup.com/Blog/TabId/58/PostId/189/UserRolesAdministration.aspx
+        /// Found by: Kevin Mitchell
 		/// </summary>
 		private void CreateAdminIfNeeded()
 		{

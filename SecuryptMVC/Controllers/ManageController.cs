@@ -15,7 +15,12 @@ namespace SecuryptMVC.Controllers
 {
     /// <summary>
     /// Contains actions for managing user accounts like checking user owned items and changing password
+    ///     and user owned items
     /// </summary>
+    /// <author>
+    /// MVC Framework,
+    /// Kevin Mitchell 15/11/2016 - 5/12/2017
+    /// </author>
     [Authorize]
     public class ManageController : Controller
     {

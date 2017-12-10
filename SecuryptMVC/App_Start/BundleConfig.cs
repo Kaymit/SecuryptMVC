@@ -4,10 +4,14 @@ using System.Web.Optimization;
 namespace SecuryptMVC
 {
     /// <summary>
+    /// Template MVC code
     /// Bundles content like styles and scripts together for faster loading
     /// </summary>
     public class BundleConfig
     {
+        /// <summary>
+        /// Template MVC code
+        /// </summary>
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(

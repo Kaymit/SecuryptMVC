@@ -7,6 +7,16 @@ using System.Web;
 
 namespace SecuryptMVC.Models
 {
+    /// <summary>
+    /// EncryptedItem Entity Framework domain model
+    /// Represents a single encrypted file/item in the file system and database
+    /// Workaround: Entity Framework can't store lists of primitives like strings,
+    ///     instead Public Property exposes a list that is serialized into a comma
+    ///     separated value string, which is stored in the database.
+    /// </summary>
+    /// <author>
+    /// Kevin Mitchell 15/11/2017 - 5/12/2017
+    /// </author>
     public class EncryptedItem
     {
 		/// <summary>
@@ -81,6 +91,9 @@ namespace SecuryptMVC.Models
     /// <summary>
     /// ViewModel used to display Users permitted to access a file
     /// </summary>
+    /// <author>
+    /// Kevin Mitchell 28/11/2017
+    /// </author>
     public class PermittedUsersViewModel
     {
         public int ItemID                       { get; set; }
@@ -92,6 +105,9 @@ namespace SecuryptMVC.Models
     /// <summary>
     /// ViewModel used to display properties while editing
     /// </summary>
+    /// <author>
+    /// Kevin Mitchell 28/11/2017
+    /// </author>
     public class EditViewModel
     {
         public int ItemID { get; set; }
@@ -105,6 +121,9 @@ namespace SecuryptMVC.Models
     /// <summary>
     /// ViewModel used to submit editable properties
     /// </summary>
+    /// /// <author>
+    /// Kevin Mitchell 4/12/2017
+    /// </author>
     public class EditableItemPropertiesViewModel
     {
         public int ItemID { get; set; }

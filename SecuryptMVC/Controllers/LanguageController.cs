@@ -10,12 +10,10 @@ namespace SecuryptMVC.Controllers
     {
 
         /// <summary>
-        /// Author: Michael
+        /// Author: Michael O'Connell-Graf
         /// Date: 2017-12-04
         /// Based on: https://www.youtube.com/watch?v=oGeAYd3idBc
         /// </summary>
-        /// <param name="lang"></param>
-        /// <returns></returns>
         public ActionResult ChangeCulture(string lang) {
 
             if (lang != null ) {

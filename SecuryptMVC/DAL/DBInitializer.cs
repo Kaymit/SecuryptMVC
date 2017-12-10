@@ -6,7 +6,12 @@ using SecuryptMVC.Models;
 
 namespace SecuryptMVC.DAL
 {
-    //MVC EF framework class: if model changes, DB is dropped and recreated with test/dev data
+    /// <summary>
+    ///MVC EF framework class: if model changes, DB is dropped and recreated with test/dev data
+    /// </summary>
+    /// <author>
+    /// Kevin Mitchell 15/11/2017
+    /// </author>
     public class DBInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<FileContext>
     {
         

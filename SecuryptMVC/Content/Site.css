@@ -3,10 +3,40 @@
     padding-bottom: 20px;
 }
 
+.content:before {
+    content: "";
+    position: fixed;
+    top: -5%;
+    left: -5%;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    display: block;
+    background-image: url(Images/vault.jpg);
+    background-size: cover;
+    width: 110%;
+    height: 110%;
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(20px);
+    -ms-filter: blur(20px);
+    filter: blur(20px);
+}
+
+.content {
+    overflow: auto;
+    position: relative;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    background-color: #eee;
+    border-radius: 15px;
+}
+
+.img-shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -14,6 +44,17 @@
 */
 .dl-horizontal dt {
     white-space: normal;
+}
+
+/*https://forums.asp.net/t/2043904.aspx?Style+an+input+to+look+like+a+Link+example+asp+net+server+control+Link+Button
+    turn a submit button into a link
+*/
+.makealink {
+    background: transparent;
+    border: 0px;
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */

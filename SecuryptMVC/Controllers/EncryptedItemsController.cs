@@ -35,14 +35,17 @@ namespace SecuryptMVC.Controllers
         /// </summary>
         CryptoHandler ch = new CryptoHandler();
 
-        // GET: EncryptedItems
+        /// <summary>
+        /// GET: displays user's accessible items
+        /// </summary>
+        /// <returns>list of all items user is permitted to view</returns>
         public async Task<ActionResult> Index()
         {
             string userID = User.Identity.GetUserId();
 
             //Query to list all items user is permitted by item owner to view, including user's own
             IQueryable<EncryptedItem> queryPermitted = from item in db.EncryptedItems
-                            where item.PermittedUserIDsAsString.Contains(userID) || item.IsPrivate == false //TODO ***Unsure if this OR statement works***
+                            where item.PermittedUserIDsAsString.Contains(userID) || item.IsPrivate == false
                             select item;
 
             //async execute query
@@ -87,11 +90,8 @@ namespace SecuryptMVC.Controllers
 
             //get byte stream of decrypted bytes, return a FileStreamResult with
             //content type and FileStream
-            string contentType = MimeMapping.GetMimeMapping(encryptedItem.Name);       //can get content type from file if file exists
+            string contentType = MimeMapping.GetMimeMapping(encryptedItem.Name);
             MemoryStream decryptedFileStream = ch.DecryptFile(encryptedItem.StorageLocation);
-
-            //byte[] bytes = decryptedFileStream.ToArray();
-            //System.IO.File.Delete(fileName);                                  //delete temp file
 
             return File(decryptedFileStream, contentType, encryptedItem.Name);      //construct and return filestream to client
         }
@@ -223,7 +223,7 @@ namespace SecuryptMVC.Controllers
 
             if (encryptedItem == null)
             {
-                ViewBag.errorMessage = "File not found: something spooky has happened...";
+                ViewBag.errorMessage = "File not found";
                 return View("Error");
             }
             //check if user is owner of file
@@ -246,7 +246,7 @@ namespace SecuryptMVC.Controllers
                 if (encryptedItem.PermittedUserIDs.Contains(userIDToAdd))
                 {
                     ViewBag.errorMessage = "User already has permission";
-                    return View("Error");
+                    return View("Info");
                 }
 
                 encryptedItem.PermittedUserIDs.Add(userIDToAdd);

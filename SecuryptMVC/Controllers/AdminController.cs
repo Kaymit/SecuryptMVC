@@ -1,4 +1,5 @@
-﻿using SecuryptMVC.DAL;
+﻿using Microsoft.AspNet.Identity.Owin;
+using SecuryptMVC.DAL;
 using SecuryptMVC.Models;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,14 @@ namespace SecuryptMVC.Controllers
 {
     public class AdminController : Controller
     {
-		private ApplicationUserManager _userManager;
-		private ApplicationRoleManager _roleManager;
-		private ApplicationDbContext dbID = new ApplicationDbContext();
+        private ApplicationUserManager _userManager;
+        private ApplicationDbContext dbID;
+
+        public AdminController()
+        {
+            _userManager = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            dbID = new ApplicationDbContext();
+        }
 
 		/// <summary>
         /// GET: Returns a list of all users to admin users

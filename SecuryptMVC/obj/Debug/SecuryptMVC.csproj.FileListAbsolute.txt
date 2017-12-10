@@ -620,3 +620,5 @@ C:\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.csprojResolveAsse
 C:\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.csproj.CoreCompileInputs.cache
 C:\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.dll
 C:\Visual Studio\SecuryptMVC\SecuryptMVC\obj\Debug\SecuryptMVC.pdb
+D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\no\Resources.resources.dll
+D:\Visual Studio\SecuryptMVC\SecuryptMVC\bin\sv\Resources.resources.dll

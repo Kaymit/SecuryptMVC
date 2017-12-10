@@ -226,6 +226,7 @@
     <Content Include="Content\Images\cqraf6gz.jpg" />
     <Content Include="Content\Images\decryption.jpg" />
     <Content Include="Content\Images\encryption.jpg" />
+    <Content Include="Content\Images\vault.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

@@ -124,13 +124,13 @@
     <value>Inledningsvis är var och en av dina uppladdade filer private, vilket innebär att endast du kan visa dem. Om du önskar att ändra detta, klicka på “Redigera”-knappen och avmarkera  den privata rutan.</value>
   </data>
   <data name="Contact" xml:space="preserve">
-    <value>Varför skulle du vilja kontakta oss?</value>
+    <value>Kontakta administratören för eventuella frågor eller problem.</value>
   </data>
   <data name="DecryptH2" xml:space="preserve">
     <value>Dekryptera</value>
   </data>
   <data name="DecryptHome_btn" xml:space="preserve">
-    <value>Starta Dekryptera</value>
+    <value>Starta Dekryptera!</value>
   </data>
   <data name="Decrypt_desc" xml:space="preserve">
     <value>En behörig part har möjlighet att avkoda chiffertexten genom att använda en dekrypteringsalgoritm, som vanligtvis kräver en hemlig dekrypteringsnyckel, vilken motparten inte har åtkomst till. Av tekniska skäl kräver ett krypteringsschema vanligtvis en nyckel-genererande algoritm som slumpmässigt producerar nycklar.</value>
@@ -217,7 +217,7 @@
     <value>Ladda upp filer</value>
   </data>
   <data name="Upload_alt" xml:space="preserve">
-    <value>Eller ladda upp dina filer här</value>
+    <value>Vår krypteringsserver dekrypterar dina filer och tjänar dem till dig över det utbredda HTTPS-protokollet, så att dina data är säkra.</value>
   </data>
   <data name="Upload_success" xml:space="preserve">
     <value>Fil(er) framgångsrikt uppladdad(e)</value>
@@ -245,5 +245,8 @@
   </data>
   <data name="Register" xml:space="preserve">
     <value>Registrera</value>
+  </data>
+  <data name="BrowseFiles" xml:space="preserve">
+    <value>Filer</value>
   </data>
 </root>

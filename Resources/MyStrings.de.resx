@@ -169,7 +169,7 @@
              auf Ihrem Computer oder Sie können wählen, sie auf einem Server zu speichern.</value>
   </data>
   <data name="Tutorial_pt3" xml:space="preserve">
-    <value>Die Entschlüsselung Ihrer Dateien ist genauso einfach. Ziehen Sie Ihre verschlüsselten Dateien per Drag &amp; Drop oder laden Sie sie hoch, um sie zu entschlüsseln.</value>
+    <value>Unser Verschlüsselungsserver entschlüsselt Ihre Dateien und stellt sie Ihnen über das weit verbreitete HTTPS-Protokoll zur Verfügung, so dass Ihre Daten sicher sind.</value>
   </data>
   <data name="UploadedFilesH2" xml:space="preserve">
     <value>Hochgeladene Dateien</value>
@@ -181,7 +181,7 @@
     <value>Die freie Enzyklopädie</value>
   </data>
   <data name="Contact" xml:space="preserve">
-    <value>Warum möchten Sie uns kontaktieren?</value>
+    <value>Bitte kontaktieren Sie den Administrator für Fragen oder Bedenken.</value>
   </data>
   <data name="About_p1" xml:space="preserve">
     <value>In der download-Seite Sie kannen sehen, </value>
@@ -209,5 +209,44 @@
   </data>
   <data name="Register" xml:space="preserve">
     <value>Registrieren</value>
+  </data>
+  <data name="Items_create" xml:space="preserve">
+    <value>Erstellen</value>
+  </data>
+  <data name="Items_delete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="Items_details" xml:space="preserve">
+    <value>Einzelheiten</value>
+  </data>
+  <data name="Items_edit" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
+  <data name="Items_name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Items_publicKey" xml:space="preserve">
+    <value>Öffentlicher Schlüssel</value>
+  </data>
+  <data name="Items_storageLoc" xml:space="preserve">
+    <value>Lagerraum</value>
+  </data>
+  <data name="ManageH4" xml:space="preserve">
+    <value>Ändern Sie Ihre Kontoeinstellungen</value>
+  </data>
+  <data name="Manage_changePassActLink" xml:space="preserve">
+    <value>Ändern Sie Ihr Passwort</value>
+  </data>
+  <data name="Manage_createActLink" xml:space="preserve">
+    <value>Erstellen</value>
+  </data>
+  <data name="Manage_manageActLink" xml:space="preserve">
+    <value>Verwalten</value>
+  </data>
+  <data name="Manage_publicKey" xml:space="preserve">
+    <value>Öffentlicher Schlüssel</value>
+  </data>
+  <data name="Shared_greeting" xml:space="preserve">
+    <value>Hallo</value>
   </data>
 </root>

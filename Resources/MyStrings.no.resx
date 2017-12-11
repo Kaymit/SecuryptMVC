@@ -249,4 +249,7 @@
   <data name="Wikipedia" xml:space="preserve">
     <value>Fra Wikipedia; gratis leksikon</value>
   </data>
+  <data name="Tutorial_pt4" xml:space="preserve">
+    <value>For å tillate andre brukere å bruke filen, gå til nedlastingssiden og ved siden av filen du vil tillate andre brukere tilgang til, klikk "Rediger". Fjern merket for "Privat" -boksen og lagre. Tilbake på opplastingssiden klikker du på "Detaljer" og deretter "Tillatede brukere". Klikk på "Legg til tillatelse" og skriv deretter inn e-postadressen til personen du vil dele filen med.</value>
+  </data>
 </root>

@@ -249,4 +249,7 @@
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>
+  <data name="Tutorial_pt4" xml:space="preserve">
+    <value>To permit other users to use your file go to the Download page and next to the file you wish to allow other users access to click "Edit". Uncheck the "Private" box and save. Back on the Upload page click "Details" and then click "Permitted Users". Click "Add Permission" and then enter the email address of the person you wish to share your file with.</value>
+  </data>
 </root>

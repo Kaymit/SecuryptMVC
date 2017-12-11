@@ -19,7 +19,7 @@ namespace Securypt.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class MyStrings {
@@ -408,6 +408,15 @@ namespace Securypt.Resources {
         public static string Tutorial_pt3 {
             get {
                 return ResourceManager.GetString("Tutorial_pt3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To permit other users to use your file go to the Download page and next to the file you wish to allow other users access to click &quot;Edit&quot;. Uncheck the &quot;Private&quot; box and save. Back on the Upload page click &quot;Details&quot; and then click &quot;Permitted Users&quot;. Click &quot;Add Permission&quot; and then enter the email address of the person you wish to share your file with..
+        /// </summary>
+        public static string Tutorial_pt4 {
+            get {
+                return ResourceManager.GetString("Tutorial_pt4", resourceCulture);
             }
         }
         

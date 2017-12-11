@@ -249,4 +249,7 @@
   <data name="Shared_greeting" xml:space="preserve">
     <value>Hallo</value>
   </data>
+  <data name="Tutorial_pt4" xml:space="preserve">
+    <value>Um anderen Benutzern zu erlauben, Ihre Datei zu verwenden, gehen Sie zu der Download-Seite und neben der Datei, die Sie anderen Benutzern erlauben möchten, auf "Bearbeiten" zu klicken. Deaktivieren Sie das Kontrollkästchen "Privat" und speichern Sie. Zurück auf der Upload-Seite klicken Sie auf "Details" und dann auf "Erlaubte Benutzer". Klicken Sie auf "Berechtigung hinzufügen" und geben Sie die E-Mail-Adresse der Person ein, mit der Sie Ihre Datei teilen möchten.</value>
+  </data>
 </root>

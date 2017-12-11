@@ -249,4 +249,7 @@
   <data name="BrowseFiles" xml:space="preserve">
     <value>Filer</value>
   </data>
+  <data name="Tutorial_pt4" xml:space="preserve">
+    <value>För att tillåta andra användare att använda din fil, gå till hämtningssidan och bredvid filen du vill tillåta andra användare att klicka på "Redigera". Avmarkera kryssrutan "Privat" och spara. Tillbaka på Upload-sidan klickar du på "Detaljer" och klickar sedan på "Tillåtna användare". Klicka på "Lägg till tillstånd" och ange sedan e-postadressen till den person du vill dela din fil med.</value>
+  </data>
 </root>
